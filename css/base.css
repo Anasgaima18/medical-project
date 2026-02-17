@@ -1,0 +1,180 @@
+/* ========================================
+   Base — Reset, Typography, Globals
+======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap');
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+  background-color: var(--bg);
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--text);
+  font-weight: 500;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  margin-bottom: var(--space-md);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-sm);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Utility — layout breathing */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.container--narrow {
+  max-width: var(--max-width-narrow);
+}
+
+.section {
+  padding: var(--space-3xl) 0; /* Generous 'Ma' — sections breathe */
+}
+
+.section--alt {
+  background-color: var(--bg-alt);
+}
+
+.section--tight {
+  padding: var(--space-xl) 0;
+}
+
+.section--warm {
+  background-color: var(--bg-warm);
+}
+
+/* Section headers — centered with breathing room */
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.section__label {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-sm);
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+.section__subtitle {
+  font-size: var(--fs-body);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: var(--lh-body);
+}
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+
+/* Visibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Divider — subtle */
+.divider {
+  border: none;
+  height: 1px;
+  background: var(--border-light);
+  margin: var(--space-xl) 0;
+}
+
+/* Selection */
+::selection {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}

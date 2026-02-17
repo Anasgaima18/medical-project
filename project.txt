@@ -1,0 +1,45 @@
+this is japan client project.
+``` [Request Summary]
+・Background:
+A medical institution is looking to launch a dedicated recruitment website to recruit new staff.
+
+・Detailed Request:
+We would like to create a dedicated website that conveys the characteristics and appeal of the medical institution and creates an environment where job seekers can easily apply. Specifically, we would like you to handle everything from design to coding.
+
+・Required Skills:
+Knowledge and experience in web design, coding, and SEO are required.
+
+Based on the CAPS Group design (see Reference URL ①), we would like to incorporate a system for creating casual connections (such as LINE or casual interviews) like the Total Care Group (see Reference URL ③).
+Our company is (see Reference URL ②). Please use this as a reference for our brand color.
+
+[Site Type]
+Recruitment/Job Site
+
+[Target]
+Any audience
+Men
+Women
+20s
+30s
+40s
+50s
+
+[Purpose of Site Creation]
+Increase traffic
+
+[Request Details]
+Planning/Design
+Design
+Coding
+SEO
+
+[Number of Site Pages]
+6-10
+
+[Supported Devices]
+Responsive web design
+
+[Reference Site URL]
+https://lecaldo.co.jp/total-care-kotesashi/
+https://www.tamagawa-josui.com/kihokai.html
+https://recruit.caps365.jp/```

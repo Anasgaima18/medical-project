@@ -1,0 +1,166 @@
+/* ========================================
+   Background Patterns — Enterprise Quality
+   CSS-only textures for performance & clean look
+======================================== */
+
+/* 
+  1. Hero Background Images (Medical Themed)
+  Using LoremFlickr for keyword-specific medical imagery.
+  Add '?lock=1' to URLs to keep the image consistent across reloads if desired.
+*/
+body.page-home .hero {
+  /* Keywords: medical, hospital, clean */
+  background-image: url('../images/hero-medical-team.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+body.page-about .page-hero {
+  /* Keywords: doctor, team, meeting */
+  background-image: url('https://loremflickr.com/1920/600/doctors/all?lock=221');
+  background-size: cover;
+  background-position: center;
+}
+
+body.page-jobs .page-hero {
+  /* Keywords: nurse, working, healthcare */
+  background-image: url('https://loremflickr.com/1920/600/nurse/all?lock=222');
+  background-size: cover;
+  background-position: center;
+}
+
+body.page-interviews .page-hero {
+  /* User-provided: 7_healthcare_interview_questions */
+  background-image: url('../images/7_healthcare_interview_questions.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+body.page-environment .page-hero {
+  /* User-provided: medical202 */
+  background-image: url('../images/66cff132ed748637aed80b57_66cff11f6674801c76859528_medical202.png');
+  background-size: cover;
+  background-position: center;
+}
+
+body.page-connect .page-hero,
+body.page-simple .page-hero {
+  /* User-provided: LINE Logo */
+  background-image: url('../images/line_logo.svg');
+  background-size: 80px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #06C755; /* LINE Brand Green */
+}
+
+/* Overlay for readability (Teal Brand Tint) */
+.hero::before,
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(46, 107, 98, 0.75); /* Stronger tint for random photos */
+  z-index: 0;
+}
+
+/* Ensure text sits above overlay */
+.hero__content,
+.page-hero__title,
+.page-hero__subtitle,
+.page-hero__label {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.page-hero__label {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+}
+
+
+/* 
+  2. Page Background: IMAGE FILE (SVG)
+  Subtle grid with floating elements for content pages.
+*/
+body.page-home,
+body.page-about,
+body.page-jobs,
+body.page-interviews,
+body.page-environment,
+body.page-connect,
+body.page-simple {
+  background-color: var(--bg);
+  background-image: url('../images/page-bg.svg');
+  background-size: cover;
+  background-attachment: fixed; /* Parallax effect */
+  background-position: center;
+}
+
+/* Specific tint overrides */
+body.page-about {
+  background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('../images/page-bg.svg');
+}
+
+
+
+/* 
+  2. Mesh Gradient: Organic, Fluid
+  Good for section breaks or feature areas.
+*/
+.bg-mesh {
+  background-color: var(--bg-warm);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(170,40%,94%,1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(32,40%,94%,1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(170,40%,94%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(32,40%,94%,1) 0px, transparent 50%);
+}
+
+
+/* 
+  3. Subtle Noise: Adds texture to flat areas
+  Prevents banding and feels more premium.
+*/
+.bg-noise {
+  position: relative;
+}
+
+.bg-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+
+/* 
+  4. Geometric Accent: Decorative shapes
+  Used for 'About', 'Mission' type sections.
+*/
+.bg-geometric {
+  background-color: var(--bg);
+  background-image: linear-gradient(30deg, var(--border-light) 12%, transparent 12.5%, transparent 87%, var(--border-light) 87.5%, var(--border-light)),
+  linear-gradient(150deg, var(--border-light) 12%, transparent 12.5%, transparent 87%, var(--border-light) 87.5%, var(--border-light)),
+  linear-gradient(30deg, var(--border-light) 12%, transparent 12.5%, transparent 87%, var(--border-light) 87.5%, var(--border-light)),
+  linear-gradient(150deg, var(--border-light) 12%, transparent 12.5%, transparent 87%, var(--border-light) 87.5%, var(--border-light)),
+  linear-gradient(60deg, var(--border-light) 25%, transparent 25.5%, transparent 75%, var(--border-light) 75%, var(--border-light)),
+  linear-gradient(60deg, var(--border-light) 25%, transparent 25.5%, transparent 75%, var(--border-light) 75%, var(--border-light));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  opacity: 0.8;
+}
+
+
+/* 
+  Specific Page Overrides 
+  (Optional hooks for future customization)
+*/
+
