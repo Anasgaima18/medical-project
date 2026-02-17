@@ -3,20 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>先輩の声 | 医療法人社団 季邦会 採用サイト</title>
+    <title>募集要項 | 医療法人社団 季邦会 採用サイト</title>
     <meta
       name="description"
-      content="季邦会で働くスタッフのインタビュー。医師・看護師・クラークの声を通じて、リアルな職場の雰囲気をお伝えします。"
+      content="季邦会の医師・看護師・医療クラーク・事務スタッフの募集要項。給与・勤務時間・福利厚生など詳細をご確認ください。"
     />
-    <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg" />
-    <link rel="stylesheet" href="../css/variables.css" />
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/components.css" />
-    <link rel="stylesheet" href="../css/animations.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
-    <link rel="stylesheet" href="../css/backgrounds.css" />
+    <meta property="og:title" content="募集要項 | 季邦会 採用" />
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/backgrounds.css" />
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "JobPosting",
+          "title": "医師（常勤・非常勤）",
+          "hiringOrganization": {
+            "@type": "Organization",
+            "name": "医療法人社団 季邦会"
+          },
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "立川市",
+              "addressRegion": "東京都"
+            }
+          },
+          "employmentType": ["FULL_TIME", "PART_TIME"],
+          "description": "総合診療・内科を中心としたクリニックでの診療業務"
+        }
+      ]
+    </script>
   </head>
-  <body class="page-transition page-interviews">
+  <body class="page-transition page-jobs">
     <!-- Inline SVG Sprite -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
       <symbol id="icon-logo" viewBox="0 0 40 40">
@@ -777,8 +801,8 @@
         <div class="nav__links">
           <a href="index.html" class="nav__link">トップ</a>
           <a href="about.html" class="nav__link">私たちについて</a>
-          <a href="jobs.html" class="nav__link">募集要項</a>
-          <a href="interviews.html" class="nav__link active">先輩の声</a>
+          <a href="jobs.html" class="nav__link active">募集要項</a>
+          <a href="interviews.html" class="nav__link">先輩の声</a>
           <a href="environment.html" class="nav__link">働く環境</a>
           <a href="connect.html" class="nav__link">カジュアル面談</a>
           <a href="faq.html" class="nav__link">FAQ</a>
@@ -798,9 +822,7 @@
           <a href="environment.html" class="nav__drawer-link">働く環境</a>
           <a href="connect.html" class="nav__drawer-link">カジュアル面談</a>
           <a href="faq.html" class="nav__drawer-link">FAQ</a>
-          <a
-            href="entry.html"
-            class="nav__drawer-link nav__drawer-entry"
+          <a href="entry.html" class="nav__drawer-link nav__drawer-entry"
             >エントリー →</a
           >
         </div>
@@ -808,208 +830,309 @@
     </nav>
 
     <main>
+      <!-- Page Hero -->
       <section class="page-hero">
         <div class="container reveal">
-          <p class="page-hero__label">Interviews</p>
-          <h1 class="page-hero__title">先輩の声</h1>
+          <p class="page-hero__label">Positions</p>
+          <h1 class="page-hero__title">募集要項</h1>
           <p class="page-hero__subtitle">
-            季邦会で働くスタッフの声をお届けします。
+            あなたにぴったりのポジションを見つけてください。
           </p>
         </div>
       </section>
 
-      <!-- Interview Cards -->
+      <!-- Job Listings -->
       <section class="section">
         <div class="container">
-          <div
-            class="flex-col flex-col--xl"
-          >
-            <!-- Interview 1 -->
-            <article class="interview-card reveal">
-              <div
-                class="interview-card__image"
-                style="
-                  background-image: url(&quot;../images/7_healthcare_interview_questions.jpg&quot;);
-                  background-size: cover;
-                  background-position: center;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              ></div>
-              <div class="interview-card__body">
-                <span class="tag interview-card__role">医師</span>
-                <h2 class="interview-card__quote">
-                  「地域に根差した医療の<br />やりがいを日々感じています。」
-                </h2>
-                <p class="interview-card__name">
-                  T.K 先生 — 街のクリニック立川・村山 / 入職 3年目
-                </p>
-                <p
-                  style="
-                    margin-top: var(--space-md);
-                    color: var(--text-muted);
-                    font-size: var(--fs-small);
-                    line-height: 1.8;
-                  "
-                >
-                  大学病院での勤務を経て季邦会に入職しました。大きな病院では見えにくかった「患者さまの日常」に
-                  寄り添える環境がここにはあります。クラウド型電子カルテのおかげで効率的に診療でき、
-                  患者さまとの対話の時間をしっかり確保できるのが魅力です。
-                  テレワーク対応もあり、ワークライフバランスも充実しています。
-                </p>
-              </div>
-            </article>
+          <!-- Tabs -->
+          <div class="tabs reveal" role="tablist">
+            <button class="tab active" data-tab="all" role="tab">すべて</button>
+            <button class="tab" data-tab="doctor" role="tab">医師</button>
+            <button class="tab" data-tab="nurse" role="tab">看護師</button>
+            <button class="tab" data-tab="clerk" role="tab">
+              医療クラーク
+            </button>
+            <button class="tab" data-tab="office" role="tab">
+              事務スタッフ
+            </button>
+          </div>
 
-            <!-- Interview 2 -->
-            <article class="interview-card reveal">
-              <div
-                class="interview-card__image"
-                style="
-                  background-image: url(&quot;../images/card-flexibility.jpg&quot;);
-                  background-size: cover;
-                  background-position: center;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              ></div>
-              <div class="interview-card__body">
-                <span class="tag interview-card__role">看護師</span>
-                <h2 class="interview-card__quote">
-                  「未経験でも安心して<br />成長できる環境です。」
-                </h2>
-                <p class="interview-card__name">
-                  M.S さん — びやじま内科医院 / 入職 2年目
-                </p>
-                <p
-                  style="
-                    margin-top: var(--space-md);
-                    color: var(--text-muted);
-                    font-size: var(--fs-small);
-                    line-height: 1.8;
-                  "
-                >
-                  前職は病棟勤務でしたが、クリニックの外来看護は初めてでした。
-                  研修制度がしっかりしていて、先輩看護師がいつでも相談に乗ってくれます。
-                  患者さまの「ありがとう」が直接聞ける距離感が、この仕事の一番の魅力です。
-                  休日もしっかり取れるので、プライベートとの両立もできています。
-                </p>
-              </div>
-            </article>
+          <div class="tab-panels">
+            <!-- All -->
+            <div class="tab-panel active" data-panel="all">
+              <div class="grid grid--2 reveal-stagger" id="all-jobs">
+                <!-- Doctor -->
+                <div class="card" id="doctor" data-category="doctor">
+                  <span class="tag tag--spaced">医師</span>
+                  <h3 class="card__title">医師（常勤・非常勤）</h3>
+                  <p class="card__text card__text--spaced">
+                    総合診療・内科を中心としたクリニックでの診療業務。
+                    自分らしいキャリアと生き方を両立できる環境です。
+                  </p>
+                  <table class="job-table">
+                    <tr>
+                      <td>勤務地</td>
+                      <td>
+                        各クリニック（立川・日野・江東区・鎌倉・千代田区）
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>診療科目</td>
+                      <td>
+                        内科・糖尿病内科・呼吸器内科・小児科 他
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>勤務形態</td>
+                      <td>常勤・非常勤（週1日〜相談可）</td>
+                    </tr>
+                    <tr>
+                      <td>応募資格</td>
+                      <td>医師免許をお持ちの方</td>
+                    </tr>
+                  </table>
+                  <a href="entry.html" class="card__link card__link--spaced"
+                    >応募する</a
+                  >
+                </div>
 
-            <!-- Interview 3 -->
-            <article class="interview-card reveal">
-              <div
-                class="interview-card__image"
-                style="
-                  background-image: url(&quot;../images/card-medical-tech.png&quot;);
-                  background-size: cover;
-                  background-position: center;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              ></div>
-              <div class="interview-card__body">
-                <span class="tag tag--accent interview-card__role"
-                  >医療クラーク</span
-                >
-                <h2 class="interview-card__quote">
-                  「医療チームの一員として<br />貢献できるやりがい。」
-                </h2>
-                <p class="interview-card__name">
-                  A.Y さん — 街のクリニック日野・八王子 / 入職 1年目
-                </p>
-                <p
-                  style="
-                    margin-top: var(--space-md);
-                    color: var(--text-muted);
-                    font-size: var(--fs-small);
-                    line-height: 1.8;
-                  "
-                >
-                  医療の知識がなくても大丈夫でした。入職後の研修で基礎から学べます。
-                  医師や看護師をサポートすることで、間接的に患者さまの役に立てている実感があります。
-                  Slackでのコミュニケーションも活発で、分からないことはすぐに聞ける雰囲気です。
-                </p>
-              </div>
-            </article>
+                <!-- Nurse -->
+                <div class="card" id="nurse" data-category="nurse">
+                  <span class="tag tag--spaced">看護師</span>
+                  <h3 class="card__title">看護師（常勤・パート）</h3>
+                  <p class="card__text card__text--spaced">
+                    外来看護業務、患者対応、処置介助など。
+                    患者さまと向き合える環境が整っています。
+                  </p>
+                  <table class="job-table">
+                    <tr>
+                      <td>
+                        勤務地
+                      </td>
+                      <td>
+                        各クリニック
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        勤務時間
+                      </td>
+                      <td>
+                        9:00〜18:00（シフト制）
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        休日
+                      </td>
+                      <td>
+                        完全週休2日制（シフトによる）
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        応募資格
+                      </td>
+                      <td>
+                        看護師免許をお持ちの方（経験不問）
+                      </td>
+                    </tr>
+                  </table>
+                  <a
+                    href="entry.html"
+                    class="card__link card__link--spaced"
+                    >応募する</a
+                  >
+                </div>
 
-            <!-- Interview 4 -->
-            <article class="interview-card reveal">
-              <div
-                class="interview-card__image"
-                style="
-                  background-image: url(&quot;https://loremflickr.com/800/600/office,computer,woman/all?lock=312&quot;);
-                  background-size: cover;
-                  background-position: center;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                "
-              ></div>
-              <div class="interview-card__body">
-                <span class="tag interview-card__role">事務</span>
-                <h2 class="interview-card__quote">
-                  「医療×ITの可能性を<br />ここで追求しています。」
-                </h2>
-                <p class="interview-card__name">
-                  R.N さん — 法人本部 / 入職 2年目
-                </p>
-                <p
-                  style="
-                    margin-top: var(--space-md);
-                    color: var(--text-muted);
-                    font-size: var(--fs-small);
-                    line-height: 1.8;
-                  "
-                >
-                  医療業界は初めてでしたが、IT活用に積極的な法人の姿勢に共感して入職しました。
-                  クラウド型の電子カルテシステムの運用や、業務効率化のプロジェクトに携わっています。
-                  テレワークも活用でき、柔軟な働き方ができる環境です。
-                </p>
+                <!-- Medical Clerk -->
+                <div class="card" id="clerk" data-category="clerk">
+                  <span class="tag tag--spaced"
+                    >医療クラーク</span
+                  >
+                  <h3 class="card__title">医療クラーク</h3>
+                  <p class="card__text card__text--spaced">
+                    医師の事務作業サポート、カルテ入力、患者対応など。
+                    医療チームの一員として活躍できます。
+                  </p>
+                  <table class="job-table">
+                    <tr>
+                      <td>
+                        勤務地
+                      </td>
+                      <td>
+                        各クリニック
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        勤務時間
+                      </td>
+                      <td>
+                        9:00〜18:00
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        給与
+                      </td>
+                      <td>
+                        経験・能力により優遇
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        応募資格
+                      </td>
+                      <td>
+                        医療事務経験者優遇（未経験可）
+                      </td>
+                    </tr>
+                  </table>
+                  <a
+                    href="entry.html"
+                    class="card__link card__link--spaced"
+                    >応募する</a
+                  >
+                </div>
+
+                <!-- Office -->
+                <div class="card" id="office" data-category="office">
+                  <span class="tag tag--spaced"
+                    >事務</span
+                  >
+                  <h3 class="card__title">事務スタッフ</h3>
+                  <p class="card__text card__text--spaced">
+                    法人本部での経理・人事・IT管理など。
+                    医療×テクノロジーで組織を支えるポジションです。
+                  </p>
+                  <table class="job-table">
+                    <tr>
+                      <td>
+                        勤務地
+                      </td>
+                      <td>
+                        本部（立川）
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        勤務時間
+                      </td>
+                      <td>
+                        9:00〜18:00（テレワーク可）
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        休日
+                      </td>
+                      <td>
+                        土日祝日
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        応募資格
+                      </td>
+                      <td>
+                        PC操作ができる方（経験不問）
+                      </td>
+                    </tr>
+                  </table>
+                  <a
+                    href="entry.html"
+                    class="card__link card__link--spaced"
+                    >応募する</a
+                  >
+                </div>
               </div>
-            </article>
+            </div>
+
+            <!-- Category panels (same cards filtered via JS) -->
+            <div class="tab-panel" data-panel="doctor">
+              <div class="grid grid--2 reveal-stagger"></div>
+            </div>
+            <div class="tab-panel" data-panel="nurse">
+              <div class="grid grid--2 reveal-stagger"></div>
+            </div>
+            <div class="tab-panel" data-panel="clerk">
+              <div class="grid grid--2 reveal-stagger"></div>
+            </div>
+            <div class="tab-panel" data-panel="office">
+              <div class="grid grid--2 reveal-stagger"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- A Day Timeline -->
+      <!-- Benefits summary -->
       <section class="section section--alt">
-        <div class="container container--narrow">
+        <div class="container">
           <div class="section__header reveal">
-            <span class="section__label">A Day in the Life</span>
-            <h2 class="section__title">ある看護師の1日</h2>
+            <span class="section__label">Benefits</span>
+            <h2 class="section__title">共通の福利厚生</h2>
           </div>
-          <div class="timeline reveal">
-            <div class="timeline__item">
-              <p class="timeline__year">8:30</p>
-              <p class="timeline__text">
-                出勤・朝のミーティング。Slackで当日のスケジュール確認。
+          <div class="grid grid--4 reveal-stagger">
+            <div class="benefit-item">
+              <div class="tech-item__icon">
+                <svg class="icon" width="32" height="32">
+                  <use href="#icon-shield"></use>
+                </svg>
+              </div>
+              <p class="benefit-item__title">社会保険完備</p>
+              <p class="benefit-item__desc">健康保険・厚生年金</p>
+            </div>
+            <div style="text-align: center; padding: var(--space-md)">
+              <div
+                style="
+                  font-size: 2rem;
+                  margin-bottom: var(--space-sm);
+                  color: var(--primary);
+                "
+              >
+                <svg class="icon" width="32" height="32">
+                  <use href="#icon-train"></use>
+                </svg>
+              </div>
+              <p style="font-weight: 500; margin-bottom: 4px">交通費全額支給</p>
+              <p style="font-size: var(--fs-xs); color: var(--text-muted)">
+                規定内支給
               </p>
             </div>
-            <div class="timeline__item">
-              <p class="timeline__year">9:00</p>
-              <p class="timeline__text">
-                外来診療スタート。医師と連携して患者対応・処置。
+            <div style="text-align: center; padding: var(--space-md)">
+              <div
+                style="
+                  font-size: 2rem;
+                  margin-bottom: var(--space-sm);
+                  color: var(--primary);
+                "
+              >
+                <svg class="icon" width="32" height="32">
+                  <use href="#icon-home"></use>
+                </svg>
+              </div>
+              <p style="font-weight: 500; margin-bottom: 4px">テレワーク可</p>
+              <p style="font-size: var(--fs-xs); color: var(--text-muted)">
+                職種により相談可
               </p>
             </div>
-            <div class="timeline__item">
-              <p class="timeline__year">12:00</p>
-              <p class="timeline__text">昼休憩。近くのカフェでランチ。</p>
-            </div>
-            <div class="timeline__item">
-              <p class="timeline__year">13:00</p>
-              <p class="timeline__text">午後の診療。予防接種や健診対応。</p>
-            </div>
-            <div class="timeline__item">
-              <p class="timeline__year">16:00</p>
-              <p class="timeline__text">記録作成。電子カルテへの入力。</p>
-            </div>
-            <div class="timeline__item">
-              <p class="timeline__year">17:30</p>
-              <p class="timeline__text">退勤。残業はほとんどありません。</p>
+            <div style="text-align: center; padding: var(--space-md)">
+              <div
+                style="
+                  font-size: 2rem;
+                  margin-bottom: var(--space-sm);
+                  color: var(--primary);
+                "
+              >
+                <svg class="icon" width="32" height="32">
+                  <use href="#icon-book-open"></use>
+                </svg>
+              </div>
+              <p style="font-weight: 500; margin-bottom: 4px">研修制度</p>
+              <p style="font-size: var(--fs-xs); color: var(--text-muted)">
+                スキルアップ支援
+              </p>
             </div>
           </div>
         </div>
@@ -1019,16 +1142,20 @@
       <section class="section">
         <div class="container reveal">
           <div class="cta-banner">
-            <h2 class="cta-banner__title">あなたの声も、聞かせてください</h2>
+            <h2 class="cta-banner__title">まずはお気軽にご相談ください</h2>
             <p class="cta-banner__text">
-              カジュアル面談で、リアルな話をしましょう。
+              カジュアル面談で、あなたの疑問にお答えします。
             </p>
-            <a href="connect.html" class="btn">カジュアル面談に申し込む</a>
+            <div class="cta-buttons">
+              <a href="connect.html" class="btn">カジュアル面談</a>
+              <a href="entry.html" class="btn btn--accent">エントリーする</a>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="container">
         <div class="footer__grid">
@@ -1062,6 +1189,39 @@
         </div>
       </div>
     </footer>
-    <script src="../js/main.js"></script>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Tab filtering for job categories
+      document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll(".tab");
+        const allCards = document.querySelectorAll("#all-jobs .card");
+        const panels = document.querySelectorAll(".tab-panel");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const target = tab.dataset.tab;
+            tabs.forEach((t) => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            if (target === "all") {
+              panels[0].classList.add("active");
+              panels.forEach((p, i) => {
+                if (i > 0) p.classList.remove("active");
+              });
+              allCards.forEach((c) => (c.style.display = ""));
+            } else {
+              panels[0].classList.add("active");
+              panels.forEach((p, i) => {
+                if (i > 0) p.classList.remove("active");
+              });
+              allCards.forEach((c) => {
+                c.style.display = c.dataset.category === target ? "" : "none";
+              });
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

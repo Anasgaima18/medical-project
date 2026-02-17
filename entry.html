@@ -3,44 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>募集要項 | 医療法人社団 季邦会 採用サイト</title>
+    <title>エントリー | 医療法人社団 季邦会 採用サイト</title>
     <meta
       name="description"
-      content="季邦会の医師・看護師・医療クラーク・事務スタッフの募集要項。給与・勤務時間・福利厚生など詳細をご確認ください。"
+      content="季邦会への応募エントリーフォーム。医師・看護師・医療クラーク・事務スタッフのご応募はこちらから。"
     />
-    <meta property="og:title" content="募集要項 | 季邦会 採用" />
-    <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg" />
-    <link rel="stylesheet" href="../css/variables.css" />
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/components.css" />
-    <link rel="stylesheet" href="../css/animations.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
-    <link rel="stylesheet" href="../css/backgrounds.css" />
-    <script type="application/ld+json">
-      [
-        {
-          "@context": "https://schema.org",
-          "@type": "JobPosting",
-          "title": "医師（常勤・非常勤）",
-          "hiringOrganization": {
-            "@type": "Organization",
-            "name": "医療法人社団 季邦会"
-          },
-          "jobLocation": {
-            "@type": "Place",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "立川市",
-              "addressRegion": "東京都"
-            }
-          },
-          "employmentType": ["FULL_TIME", "PART_TIME"],
-          "description": "総合診療・内科を中心としたクリニックでの診療業務"
-        }
-      ]
-    </script>
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/backgrounds.css" />
+    <!-- Modal & form-step styles are in components.css -->
   </head>
-  <body class="page-transition page-jobs">
+  <body class="page-transition page-connect">
     <!-- Inline SVG Sprite -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
       <symbol id="icon-logo" viewBox="0 0 40 40">
@@ -792,7 +769,6 @@
         <circle cx="5" cy="19" r="1" fill="currentColor" />
       </symbol>
     </svg>
-    <!-- Navigation -->
     <nav class="nav">
       <div class="nav__inner">
         <a href="index.html" class="nav__logo"
@@ -801,12 +777,17 @@
         <div class="nav__links">
           <a href="index.html" class="nav__link">トップ</a>
           <a href="about.html" class="nav__link">私たちについて</a>
-          <a href="jobs.html" class="nav__link active">募集要項</a>
+          <a href="jobs.html" class="nav__link">募集要項</a>
           <a href="interviews.html" class="nav__link">先輩の声</a>
           <a href="environment.html" class="nav__link">働く環境</a>
           <a href="connect.html" class="nav__link">カジュアル面談</a>
           <a href="faq.html" class="nav__link">FAQ</a>
-          <a href="entry.html" class="nav__cta">エントリー</a>
+          <a
+            href="entry.html"
+            class="nav__cta"
+            style="background: var(--primary-dark)"
+            >エントリー</a
+          >
         </div>
         <button class="nav__hamburger" aria-label="メニュー">
           <span></span><span></span><span></span>
@@ -830,332 +811,377 @@
     </nav>
 
     <main>
-      <!-- Page Hero -->
       <section class="page-hero">
         <div class="container reveal">
-          <p class="page-hero__label">Positions</p>
-          <h1 class="page-hero__title">募集要項</h1>
+          <p class="page-hero__label">Entry</p>
+          <h1 class="page-hero__title">エントリーフォーム</h1>
           <p class="page-hero__subtitle">
-            あなたにぴったりのポジションを見つけてください。
+            ご応募お待ちしております。以下のフォームからお申し込みください。
           </p>
         </div>
       </section>
 
-      <!-- Job Listings -->
       <section class="section">
-        <div class="container">
-          <!-- Tabs -->
-          <div class="tabs reveal" role="tablist">
-            <button class="tab active" data-tab="all" role="tab">すべて</button>
-            <button class="tab" data-tab="doctor" role="tab">医師</button>
-            <button class="tab" data-tab="nurse" role="tab">看護師</button>
-            <button class="tab" data-tab="clerk" role="tab">
-              医療クラーク
-            </button>
-            <button class="tab" data-tab="office" role="tab">
-              事務スタッフ
-            </button>
-          </div>
-
-          <div class="tab-panels">
-            <!-- All -->
-            <div class="tab-panel active" data-panel="all">
-              <div class="grid grid--2 reveal-stagger" id="all-jobs">
-                <!-- Doctor -->
-                <div class="card" id="doctor" data-category="doctor">
-                  <span class="tag tag--spaced">医師</span>
-                  <h3 class="card__title">医師（常勤・非常勤）</h3>
-                  <p class="card__text card__text--spaced">
-                    総合診療・内科を中心としたクリニックでの診療業務。
-                    自分らしいキャリアと生き方を両立できる環境です。
-                  </p>
-                  <table class="job-table">
-                    <tr>
-                      <td>勤務地</td>
-                      <td>
-                        各クリニック（立川・日野・江東区・鎌倉・千代田区）
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>診療科目</td>
-                      <td>
-                        内科・糖尿病内科・呼吸器内科・小児科 他
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>勤務形態</td>
-                      <td>常勤・非常勤（週1日〜相談可）</td>
-                    </tr>
-                    <tr>
-                      <td>応募資格</td>
-                      <td>医師免許をお持ちの方</td>
-                    </tr>
-                  </table>
-                  <a href="entry.html" class="card__link card__link--spaced"
-                    >応募する</a
-                  >
-                </div>
-
-                <!-- Nurse -->
-                <div class="card" id="nurse" data-category="nurse">
-                  <span class="tag tag--spaced">看護師</span>
-                  <h3 class="card__title">看護師（常勤・パート）</h3>
-                  <p class="card__text card__text--spaced">
-                    外来看護業務、患者対応、処置介助など。
-                    患者さまと向き合える環境が整っています。
-                  </p>
-                  <table class="job-table">
-                    <tr>
-                      <td>
-                        勤務地
-                      </td>
-                      <td>
-                        各クリニック
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        勤務時間
-                      </td>
-                      <td>
-                        9:00〜18:00（シフト制）
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        休日
-                      </td>
-                      <td>
-                        完全週休2日制（シフトによる）
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        応募資格
-                      </td>
-                      <td>
-                        看護師免許をお持ちの方（経験不問）
-                      </td>
-                    </tr>
-                  </table>
-                  <a
-                    href="entry.html"
-                    class="card__link card__link--spaced"
-                    >応募する</a
-                  >
-                </div>
-
-                <!-- Medical Clerk -->
-                <div class="card" id="clerk" data-category="clerk">
-                  <span class="tag tag--spaced"
-                    >医療クラーク</span
-                  >
-                  <h3 class="card__title">医療クラーク</h3>
-                  <p class="card__text card__text--spaced">
-                    医師の事務作業サポート、カルテ入力、患者対応など。
-                    医療チームの一員として活躍できます。
-                  </p>
-                  <table class="job-table">
-                    <tr>
-                      <td>
-                        勤務地
-                      </td>
-                      <td>
-                        各クリニック
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        勤務時間
-                      </td>
-                      <td>
-                        9:00〜18:00
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        給与
-                      </td>
-                      <td>
-                        経験・能力により優遇
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        応募資格
-                      </td>
-                      <td>
-                        医療事務経験者優遇（未経験可）
-                      </td>
-                    </tr>
-                  </table>
-                  <a
-                    href="entry.html"
-                    class="card__link card__link--spaced"
-                    >応募する</a
-                  >
-                </div>
-
-                <!-- Office -->
-                <div class="card" id="office" data-category="office">
-                  <span class="tag tag--spaced"
-                    >事務</span
-                  >
-                  <h3 class="card__title">事務スタッフ</h3>
-                  <p class="card__text card__text--spaced">
-                    法人本部での経理・人事・IT管理など。
-                    医療×テクノロジーで組織を支えるポジションです。
-                  </p>
-                  <table class="job-table">
-                    <tr>
-                      <td>
-                        勤務地
-                      </td>
-                      <td>
-                        本部（立川）
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        勤務時間
-                      </td>
-                      <td>
-                        9:00〜18:00（テレワーク可）
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        休日
-                      </td>
-                      <td>
-                        土日祝日
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        応募資格
-                      </td>
-                      <td>
-                        PC操作ができる方（経験不問）
-                      </td>
-                    </tr>
-                  </table>
-                  <a
-                    href="entry.html"
-                    class="card__link card__link--spaced"
-                    >応募する</a
-                  >
-                </div>
-              </div>
+        <div class="container container--narrow">
+          <!-- Progress Steps -->
+          <div class="progress-steps reveal">
+            <div class="progress-step active">
+              <span class="progress-step__dot">1</span>
+              <span>基本情報</span>
             </div>
-
-            <!-- Category panels (same cards filtered via JS) -->
-            <div class="tab-panel" data-panel="doctor">
-              <div class="grid grid--2 reveal-stagger"></div>
+            <div class="progress-step__line"></div>
+            <div class="progress-step">
+              <span class="progress-step__dot">2</span>
+              <span>経験・希望</span>
             </div>
-            <div class="tab-panel" data-panel="nurse">
-              <div class="grid grid--2 reveal-stagger"></div>
-            </div>
-            <div class="tab-panel" data-panel="clerk">
-              <div class="grid grid--2 reveal-stagger"></div>
-            </div>
-            <div class="tab-panel" data-panel="office">
-              <div class="grid grid--2 reveal-stagger"></div>
+            <div class="progress-step__line"></div>
+            <div class="progress-step">
+              <span class="progress-step__dot">3</span>
+              <span>確認・送信</span>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Benefits summary -->
-      <section class="section section--alt">
-        <div class="container">
-          <div class="section__header reveal">
-            <span class="section__label">Benefits</span>
-            <h2 class="section__title">共通の福利厚生</h2>
-          </div>
-          <div class="grid grid--4 reveal-stagger">
-            <div class="benefit-item">
-              <div class="tech-item__icon">
-                <svg class="icon" width="32" height="32">
-                  <use href="#icon-shield"></use>
-                </svg>
-              </div>
-              <p class="benefit-item__title">社会保険完備</p>
-              <p class="benefit-item__desc">健康保険・厚生年金</p>
-            </div>
-            <div style="text-align: center; padding: var(--space-md)">
-              <div
-                style="
-                  font-size: 2rem;
-                  margin-bottom: var(--space-sm);
-                  color: var(--primary);
-                "
-              >
-                <svg class="icon" width="32" height="32">
-                  <use href="#icon-train"></use>
-                </svg>
-              </div>
-              <p style="font-weight: 500; margin-bottom: 4px">交通費全額支給</p>
-              <p style="font-size: var(--fs-xs); color: var(--text-muted)">
-                規定内支給
-              </p>
-            </div>
-            <div style="text-align: center; padding: var(--space-md)">
-              <div
-                style="
-                  font-size: 2rem;
-                  margin-bottom: var(--space-sm);
-                  color: var(--primary);
-                "
-              >
-                <svg class="icon" width="32" height="32">
-                  <use href="#icon-home"></use>
-                </svg>
-              </div>
-              <p style="font-weight: 500; margin-bottom: 4px">テレワーク可</p>
-              <p style="font-size: var(--fs-xs); color: var(--text-muted)">
-                職種により相談可
-              </p>
-            </div>
-            <div style="text-align: center; padding: var(--space-md)">
-              <div
-                style="
-                  font-size: 2rem;
-                  margin-bottom: var(--space-sm);
-                  color: var(--primary);
-                "
-              >
-                <svg class="icon" width="32" height="32">
-                  <use href="#icon-book-open"></use>
-                </svg>
-              </div>
-              <p style="font-weight: 500; margin-bottom: 4px">研修制度</p>
-              <p style="font-size: var(--fs-xs); color: var(--text-muted)">
-                スキルアップ支援
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          <!-- Form -->
+          <div
+            class="reveal"
+            style="
+              background: var(--white);
+              padding: var(--space-xl);
+              border-radius: var(--border-radius-lg);
+              border: 1px solid var(--border-light);
+            "
+          >
+            <form id="entry-form">
+              <!-- Step 1: Basic Info -->
+              <div class="form-step" data-step="1">
+                <h2
+                  style="
+                    font-size: var(--fs-h3);
+                    margin-bottom: var(--space-lg);
+                    color: var(--primary);
+                  "
+                >
+                  基本情報
+                </h2>
 
-      <!-- CTA -->
-      <section class="section">
-        <div class="container reveal">
-          <div class="cta-banner">
-            <h2 class="cta-banner__title">まずはお気軽にご相談ください</h2>
-            <p class="cta-banner__text">
-              カジュアル面談で、あなたの疑問にお答えします。
+                <div class="grid grid--2" style="margin-bottom: 0">
+                  <div class="form-group">
+                    <label class="form-label"
+                      >姓 <span class="required">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-input"
+                      id="lastName"
+                      placeholder="例：田中"
+                      required
+                    />
+                    <p class="form-error"></p>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label"
+                      >名 <span class="required">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-input"
+                      id="firstName"
+                      placeholder="例：太郎"
+                      required
+                    />
+                    <p class="form-error"></p>
+                  </div>
+                </div>
+
+                <div class="grid grid--2" style="margin-bottom: 0">
+                  <div class="form-group">
+                    <label class="form-label"
+                      >姓（フリガナ） <span class="required">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-input"
+                      id="lastNameKana"
+                      placeholder="例：タナカ"
+                      required
+                    />
+                    <p class="form-error"></p>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label"
+                      >名（フリガナ） <span class="required">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-input"
+                      id="firstNameKana"
+                      placeholder="例：タロウ"
+                      required
+                    />
+                    <p class="form-error"></p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label"
+                    >メールアドレス <span class="required">*</span></label
+                  >
+                  <input
+                    type="email"
+                    class="form-input"
+                    id="email"
+                    placeholder="例：tanaka@example.com"
+                    required
+                  />
+                  <p class="form-error"></p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label"
+                    >電話番号 <span class="required">*</span></label
+                  >
+                  <input
+                    type="tel"
+                    class="form-input"
+                    id="phone"
+                    placeholder="例：090-1234-5678"
+                    required
+                  />
+                  <p class="form-error"></p>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: var(--space-lg);
+                  "
+                >
+                  <button type="button" class="btn btn--primary" data-next>
+                    次へ →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 2: Experience -->
+              <div class="form-step" data-step="2">
+                <h2
+                  style="
+                    font-size: var(--fs-h3);
+                    margin-bottom: var(--space-lg);
+                    color: var(--primary);
+                  "
+                >
+                  経験・ご希望
+                </h2>
+
+                <div class="form-group">
+                  <label class="form-label"
+                    >ご希望の職種 <span class="required">*</span></label
+                  >
+                  <select class="form-select" id="position" required>
+                    <option value="">選択してください</option>
+                    <option value="doctor">医師</option>
+                    <option value="nurse">看護師</option>
+                    <option value="clerk">医療クラーク</option>
+                    <option value="office">事務スタッフ</option>
+                  </select>
+                  <p class="form-error"></p>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">ご希望の勤務地</label>
+                  <select class="form-select" id="location">
+                    <option value="">選択してください（任意）</option>
+                    <option value="tachikawa">街のクリニック立川・村山</option>
+                    <option value="hino">街のクリニック日野・八王子</option>
+                    <option value="biyajima">びやじま内科医院（江東区）</option>
+                    <option value="ofuna">
+                      街のクリニック大船こども院（鎌倉）
+                    </option>
+                    <option value="jimbocho">
+                      高血圧といびきの内科 神保町駅前（千代田区）
+                    </option>
+                    <option value="any">特に希望なし</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">雇用形態</label>
+                  <select class="form-select" id="employment">
+                    <option value="">選択してください（任意）</option>
+                    <option value="fulltime">常勤（フルタイム）</option>
+                    <option value="parttime">非常勤・パート</option>
+                    <option value="either">どちらでも可</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">ご経験年数</label>
+                  <select class="form-select" id="experience">
+                    <option value="">選択してください（任意）</option>
+                    <option value="new">新卒・第二新卒</option>
+                    <option value="1-3">1〜3年</option>
+                    <option value="3-5">3〜5年</option>
+                    <option value="5-10">5〜10年</option>
+                    <option value="10+">10年以上</option>
+                  </select>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: var(--space-lg);
+                  "
+                >
+                  <button type="button" class="btn btn--ghost" data-prev>
+                    ← 戻る
+                  </button>
+                  <button type="button" class="btn btn--primary" data-next>
+                    次へ →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 3: Confirm -->
+              <div class="form-step" data-step="3">
+                <h2
+                  style="
+                    font-size: var(--fs-h3);
+                    margin-bottom: var(--space-lg);
+                    color: var(--primary);
+                  "
+                >
+                  確認・メッセージ
+                </h2>
+
+                <div class="form-group">
+                  <label class="form-label">自己PR・メッセージ</label>
+                  <textarea
+                    class="form-textarea"
+                    id="message"
+                    placeholder="ご質問やアピールしたいことなど、自由にご記入ください。"
+                    style="min-height: 160px"
+                  ></textarea>
+                </div>
+
+                <div
+                  style="
+                    background: var(--bg-alt);
+                    padding: var(--space-md);
+                    border-radius: var(--border-radius);
+                    margin-bottom: var(--space-lg);
+                  "
+                >
+                  <p
+                    style="
+                      font-size: var(--fs-small);
+                      color: var(--text-muted);
+                      line-height: 1.8;
+                    "
+                  >
+                    ご入力いただいた個人情報は、採用選考の目的のみに使用し、
+                    適切に管理いたします。選考結果に関わらず、選考終了後は
+                    速やかに廃棄いたします。
+                  </p>
+                </div>
+
+                <div class="form-group checkbox-row">
+                  <input
+                    type="checkbox"
+                    id="agree"
+                    required
+                    style="margin-top: 3px; accent-color: var(--primary)"
+                  />
+                  <label
+                    for="agree"
+                    style="
+                      font-size: var(--fs-small);
+                      color: var(--text-muted);
+                      cursor: pointer;
+                    "
+                  >
+                    上記の個人情報の取り扱いに同意します
+                    <span class="required">*</span>
+                  </label>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: var(--space-lg);
+                  "
+                >
+                  <button type="button" class="btn btn--ghost" data-prev>
+                    ← 戻る
+                  </button>
+                  <button type="submit" class="btn btn--primary btn--lg">
+                    エントリーする
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Other options -->
+          <div
+            class="reveal"
+            style="text-align: center; margin-top: var(--space-xl)"
+          >
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: var(--fs-small);
+                margin-bottom: var(--space-sm);
+              "
+            >
+              まだ応募を迷っている方は
             </p>
             <div class="cta-buttons">
-              <a href="connect.html" class="btn">カジュアル面談</a>
-              <a href="entry.html" class="btn btn--accent">エントリーする</a>
+              <a href="connect.html" class="btn btn--outline btn--sm"
+                >カジュアル面談</a
+              >
+              <a href="connect.html#contact-form" class="btn btn--ghost btn--sm"
+                >LINE で相談</a
+              >
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+      <div class="modal__content">
+        <button class="modal__close" aria-label="閉じる">
+          <svg class="icon" width="20" height="20">
+            <use href="#icon-close"></use>
+          </svg>
+        </button>
+        <div
+          style="
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+            color: var(--primary);
+          "
+        >
+          <svg class="icon" width="48" height="48">
+            <use href="#icon-check"></use>
+          </svg>
+        </div>
+        <h2 style="font-size: var(--fs-h3); margin-bottom: var(--space-sm)">
+          エントリーありがとうございます
+        </h2>
+        <p style="color: var(--text-muted); margin-bottom: var(--space-lg)">
+          ご応募を受け付けました。<br />
+          担当者より3営業日以内にご連絡いたします。
+        </p>
+        <a href="index.html" class="btn btn--primary">トップに戻る</a>
+      </div>
+    </div>
+
     <footer class="footer">
       <div class="container">
         <div class="footer__grid">
@@ -1189,39 +1215,7 @@
         </div>
       </div>
     </footer>
-
-    <script src="../js/main.js"></script>
-    <script>
-      // Tab filtering for job categories
-      document.addEventListener("DOMContentLoaded", () => {
-        const tabs = document.querySelectorAll(".tab");
-        const allCards = document.querySelectorAll("#all-jobs .card");
-        const panels = document.querySelectorAll(".tab-panel");
-
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            const target = tab.dataset.tab;
-            tabs.forEach((t) => t.classList.remove("active"));
-            tab.classList.add("active");
-
-            if (target === "all") {
-              panels[0].classList.add("active");
-              panels.forEach((p, i) => {
-                if (i > 0) p.classList.remove("active");
-              });
-              allCards.forEach((c) => (c.style.display = ""));
-            } else {
-              panels[0].classList.add("active");
-              panels.forEach((p, i) => {
-                if (i > 0) p.classList.remove("active");
-              });
-              allCards.forEach((c) => {
-                c.style.display = c.dataset.category === target ? "" : "none";
-              });
-            }
-          });
-        });
-      });
-    </script>
+    <script src="js/main.js"></script>
+    <script src="js/form.js"></script>
   </body>
 </html>
