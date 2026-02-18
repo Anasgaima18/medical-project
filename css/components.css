@@ -2848,6 +2848,14 @@ input[type="submit"]:hover {
   line-height: 1.7;
 }
 
+/* About page director portrait helper */
+.about-message__photo {
+  width: min(240px, 100%);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto var(--space-md);
+  border-radius: var(--border-radius-lg);
+}
+
 /* Jobs page: keep listing cards readable and stable */
 .page-jobs #all-jobs .card {
   background: var(--white);
@@ -2924,5 +2932,21 @@ input[type="submit"]:hover {
     flex: 0 0 auto;
     padding: 10px 14px;
   }
+}
+
+/* About page clinics: avoid full green hover fill */
+.page-about #clinics .card {
+  background: var(--white);
+}
+
+.page-about #clinics .card:hover {
+  background: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.page-about #clinics .card:hover .card__title,
+.page-about #clinics .card:hover .card__text {
+  color: var(--text);
 }
 

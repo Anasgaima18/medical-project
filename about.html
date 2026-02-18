@@ -827,25 +827,12 @@
       <!-- Director Message -->
       <section class="section" id="message">
         <div class="container">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 280px 1fr;
-              gap: var(--space-xl);
-              align-items: start;
-            "
-            class="reveal"
-          >
-            <div style="text-align: center">
+          <div class="message-grid reveal">
+            <div class="text-center">
               <div
+                class="image-panel about-message__photo"
                 style="
-                  width: 240px;
-                  height: 300px;
-                  border-radius: var(--border-radius-lg);
                   background-image: url(&quot;images/card-medical-tech.png&quot;);
-                  background-size: cover;
-                  background-position: center;
-                  margin: 0 auto var(--space-md);
                 "
               ></div>
               <p
@@ -864,11 +851,7 @@
             </div>
             <div>
               <span class="section__label">Message</span>
-              <h2
-                style="font-size: var(--fs-h2); margin-bottom: var(--space-lg)"
-              >
-                理事長メッセージ
-              </h2>
+              <h2 class="heading--lg">理事長メッセージ</h2>
               <p class="section-desc">
                 季邦会は、「みんなが、いつでも相談出来る総合診療クリニック」を目指して設立されました。
                 私たちは地域の方々の健康を包括的に支え、どんな小さな相談にも丁寧に対応する医療を心がけています。
@@ -879,7 +862,7 @@
                 災害医療やベンチャー企業の医療機器開発にも携わりながら、
                 常に「患者さまに最も近い医療」を追求しています。
               </p>
-              <p style="line-height: 2">
+              <p class="section-desc">
                 私たちは、テクノロジーを積極的に活用し、クラウド型電子カルテやSlackによるコミュニケーションなど、
                 柔軟な働き方を実現しています。医療の質と、働く人の生活の質を両立できる環境で、
                 あなたの力を発揮しませんか。
