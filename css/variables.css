@@ -1,26 +1,49 @@
 /* ========================================
    Design Tokens — 季邦会 Recruitment
-   Enterprise-level: depth, glow, gradients
+   Minimal, clean Japanese medical palette
 ======================================== */
 
 :root {
-  /* Color — Japanese minimal palette */
-  --primary-green: #27ae60;
-  --primary-green-light: #6fdc9c;
-  --white: #fff;
-  --light-gray: #f5f5f5;
-  --dark-gray: #222;
-  --black: #000;
-  /* Button and overlay */
+  /* Core palette */
+  --primary-green: #2f7d57;
+  --primary-green-light: #7fb99a;
+  --white: #ffffff;
+  --light-gray: #f5f7f6;
+  --dark-gray: #1f2522;
+  --black: #000000;
+
+  /* Semantic aliases (used across existing CSS) */
+  --primary: var(--primary-green);
+  --primary-dark: #245f43;
+  --primary-light: #e6f1eb;
+  --primary-50: #f2f7f4;
+  --primary-rgb: 47, 125, 87;
+
+  --text: #111111;
+  --text-muted: #4a4f4d;
+  --text-light: #6b7470;
+
+  --bg: var(--white);
+  --bg-alt: var(--light-gray);
+  --bg-dark: var(--dark-gray);
+  --bg-warm: #f8f9f8;
+
+  --line-brand: var(--primary);
+  --line-brand-rgb: var(--primary-rgb);
+  --line-brand-hover: var(--primary-dark);
+  --accent-rgb: var(--primary-rgb);
+
+  /* Button + overlay */
   --button-bg: var(--white);
-  --button-border: var(--primary-green);
-  --button-text: var(--primary-green);
-  --button-hover-bg: var(--primary-green);
+  --button-border: var(--primary);
+  --button-text: var(--primary);
+  --button-hover-bg: var(--primary);
   --button-hover-text: var(--white);
-  --overlay-dark: rgba(0,0,0,0.5);
+  --overlay-dark: rgba(0, 0, 0, 0.5);
+
   /* Border */
-  --border: #dce3e1;
-  --border-light: #edf1ef;
+  --border: #d8dfdc;
+  --border-light: #e8eeeb;
 
   /* Typography */
   --font-heading: "Noto Serif JP", "Georgia", serif;
@@ -31,58 +54,64 @@
   --fw-medium: 500;
   --fw-bold: 700;
 
-  --fs-hero: clamp(2.2rem, 5.5vw, 3.8rem);
-  --fs-h1: clamp(1.8rem, 3.5vw, 2.6rem);
-  --fs-h2: clamp(1.4rem, 2.5vw, 1.95rem);
+  --fs-hero: clamp(2.2rem, 5.5vw, 3.6rem);
+  --fs-h1: clamp(1.8rem, 3.5vw, 2.5rem);
+  --fs-h2: clamp(1.4rem, 2.5vw, 1.9rem);
   --fs-h3: clamp(1.1rem, 2vw, 1.35rem);
+  --fs-h4: 1.1rem;
   --fs-body: clamp(0.95rem, 1.2vw, 1.05rem);
   --fs-small: 0.875rem;
   --fs-xs: 0.75rem;
 
   --lh-heading: 1.5;
-  --lh-body: 1.9;
+  --lh-body: 1.85;
   --ls-heading: 0.04em;
 
-  /* Spacing — Generous to honor 'Ma' (間) — breathing room - 8px grid system */
-  --space-xs: 0.5rem;   /* 8px */
-  --space-sm: 1rem;     /* 16px */
-  --space-md: 1.5rem;   /* 24px */
-  --space-lg: 2rem;     /* 32px */
-  --space-xl: 3rem;     /* 48px */
-  --space-2xl: 4rem;    /* 64px */
-  --space-3xl: 6rem;    /* 96px */
+  /* Spacing (8px grid) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
 
   /* Layout */
   --max-width: 1200px;
   --max-width-narrow: 800px;
   --nav-height: 72px;
 
-  /* Border radius — generous, modern */
+  /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 100px;
-  /* Backwards compat aliases */
   --border-radius: var(--radius-sm);
+  --border-radius-sm: var(--radius-sm);
   --border-radius-lg: var(--radius-lg);
 
-  /* Transitions — Deliberate & Calm (Japanese 'Ma') */
-  --transition-fast: 0.3s cubic-bezier(0.2, 0.0, 0.2, 1);
-  --transition-normal: 0.5s cubic-bezier(0.2, 0.0, 0.2, 1);
-  --transition-slow: 0.8s cubic-bezier(0.2, 0.0, 0.2, 1);
-  --transition-base: 0.4s cubic-bezier(0.2, 0.0, 0.2, 1);
-  --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-normal: 0.45s ease;
+  --transition-slow: 0.7s ease;
+  --transition-base: 0.35s ease;
+  --transition-spring: 0.45s ease;
 
-  /* Shadows — soft, minimal (Japanese medical aesthetic) */
+  /* Shadows (soft) */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.06);
-  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.07);
+  --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 10px 24px rgba(0, 0, 0, 0.1);
+  --shadow-primary: 0 0 8px rgba(var(--primary-rgb), 0.12);
+  --shadow-accent: 0 0 8px rgba(var(--primary-rgb), 0.12);
 
-  /* Glow — minimal */
-  --shadow-primary: 0 0 8px rgba(var(--primary-rgb), 0.08);
-  --shadow-accent: 0 0 8px rgba(var(--primary-rgb), 0.08);
-
-  /* Gradients removed for minimal color usage */
+  /* Keep old gradient tokens but simplify them */
+  --gradient-primary: linear-gradient(180deg, var(--primary) 0%, var(--primary-green-light) 100%);
+  --gradient-dark: linear-gradient(180deg, #2a2f2d 0%, #1f2522 100%);
+  --gradient-hero: linear-gradient(180deg, #f8fbf9 0%, #eef4f1 100%);
+  --gradient-hero-mesh: linear-gradient(180deg, rgba(var(--primary-rgb), 0.04) 0%, rgba(var(--primary-rgb), 0.02) 100%);
+  --gradient-glass: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.95) 100%);
+  --gradient-cta: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
 }
+

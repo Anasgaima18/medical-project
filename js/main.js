@@ -226,109 +226,121 @@ function initStatBars() {
 
 /* ---- Interview Carousel: auto-scroll 3s, infinite loop, no scrollbar ---- */
 function initInterviewCarousel() {
-  document.querySelectorAll('.interview-carousel').forEach(carousel => initOneInterviewCarousel(carousel));
+  document.querySelectorAll('.interview-carousel').forEach((carousel) => {
+    initOneInterviewCarousel(carousel);
+  });
 }
 
 function initOneInterviewCarousel(carousel) {
-  const originalCards = Array.from(carousel.querySelectorAll('.interview-card'));
-  if (originalCards.length === 0) return;
+  if (carousel.dataset.sliderInit === 'true') return;
 
-  // Remove manual scroll indicator if present
-  const indicator = carousel.querySelector('.carousel-scroll-indicator');
+  const cards = Array.from(carousel.querySelectorAll('.interview-card'));
+  if (cards.length < 2) return;
+
+  carousel.dataset.sliderInit = 'true';
+
+  // Remove manual indicators if present
+  const indicator = carousel.parentElement?.querySelector('.carousel-scroll-indicator, .scroll-indicator, .interview-scroll-line');
   if (indicator) indicator.remove();
 
-  // Remove horizontal scrollbar visually
-  carousel.style.overflowX = 'hidden';
-  carousel.style.scrollbarWidth = 'none';
-  carousel.style.msOverflowStyle = 'none';
-  carousel.style.position = 'relative';
-  carousel.style.scrollBehavior = 'smooth';
-  carousel.classList.add('no-scrollbar');
+  const firstClone = cards[0].cloneNode(true);
+  firstClone.setAttribute('aria-hidden', 'true');
+  firstClone.dataset.clone = 'first';
 
-  // Clone items for infinite loop (append and prepend)
-  originalCards.forEach(card => {
-    const clone = card.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    clone.classList.add('clone-end');
-    carousel.appendChild(clone);
-  });
-  [...originalCards].reverse().forEach(card => {
-    const clone = card.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    clone.classList.add('clone-start');
-    carousel.insertBefore(clone, carousel.firstChild);
-  });
+  const lastClone = cards[cards.length - 1].cloneNode(true);
+  lastClone.setAttribute('aria-hidden', 'true');
+  lastClone.dataset.clone = 'last';
 
-  const allCards = Array.from(carousel.querySelectorAll('.interview-card'));
-  let autoScrollInterval;
+  carousel.insertBefore(lastClone, cards[0]);
+  carousel.appendChild(firstClone);
 
-  const updateInitialPosition = () => {
-    const firstRealCard = allCards[originalCards.length];
-    if (firstRealCard) {
-      carousel.scrollLeft = firstRealCard.offsetLeft - parseFloat(getComputedStyle(carousel).paddingLeft || 0);
-    }
+  let currentIndex = 1;
+  let autoScrollTimer = null;
+  let scrollStopTimer = null;
+
+  const getStepWidth = () => {
+    const item = carousel.querySelector('.interview-card');
+    if (!item) return 0;
+    const styles = getComputedStyle(carousel);
+    const gap = parseFloat(styles.columnGap || styles.gap || '0');
+    return item.getBoundingClientRect().width + gap;
   };
 
-  setTimeout(updateInitialPosition, 100);
+  const scrollToIndex = (index, behavior = 'smooth') => {
+    const stepWidth = getStepWidth();
+    if (!stepWidth) return;
+    carousel.scrollTo({
+      left: stepWidth * index,
+      behavior
+    });
+  };
 
-  const startAutoScroll = () => {
-    stopAutoScroll();
-    autoScrollInterval = setInterval(() => scrollNext(), 3000);
+  const moveNext = () => {
+    currentIndex += 1;
+    scrollToIndex(currentIndex, 'smooth');
+  };
+
+  const movePrev = () => {
+    currentIndex -= 1;
+    scrollToIndex(currentIndex, 'smooth');
+  };
+
+  const normalizeInfinitePosition = () => {
+    const totalSlides = carousel.querySelectorAll('.interview-card').length;
+    if (currentIndex === 0) {
+      currentIndex = totalSlides - 2;
+      scrollToIndex(currentIndex, 'auto');
+    } else if (currentIndex === totalSlides - 1) {
+      currentIndex = 1;
+      scrollToIndex(currentIndex, 'auto');
+    }
   };
 
   const stopAutoScroll = () => {
-    if (autoScrollInterval) {
-      clearInterval(autoScrollInterval);
-      autoScrollInterval = null;
+    if (autoScrollTimer) {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
     }
   };
 
-  const scrollNext = () => {
-    const cardWidth = allCards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 24);
-    carousel.scrollTo({ left: carousel.scrollLeft + cardWidth, behavior: 'smooth' });
+  const startAutoScroll = () => {
+    stopAutoScroll();
+    autoScrollTimer = setInterval(moveNext, 3000);
   };
 
-  const scrollPrev = () => {
-    const cardWidth = allCards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 24);
-    carousel.scrollTo({ left: carousel.scrollLeft - cardWidth, behavior: 'smooth' });
-  };
+  requestAnimationFrame(() => {
+    scrollToIndex(currentIndex, 'auto');
+    startAutoScroll();
+  });
 
   carousel.addEventListener('scroll', () => {
-    const scrollLeft = carousel.scrollLeft;
-    const scrollWidth = carousel.scrollWidth;
-    const clientWidth = carousel.clientWidth;
-    const singleSetWidth = scrollWidth / 3;
-    if (scrollLeft >= singleSetWidth * 2 - clientWidth / 2) {
-      carousel.scrollLeft -= singleSetWidth;
-    } else if (scrollLeft <= singleSetWidth / 2) {
-      carousel.scrollLeft += singleSetWidth;
-    }
+    if (scrollStopTimer) clearTimeout(scrollStopTimer);
+    scrollStopTimer = setTimeout(() => {
+      const stepWidth = getStepWidth();
+      if (!stepWidth) return;
+      currentIndex = Math.round(carousel.scrollLeft / stepWidth);
+      normalizeInfinitePosition();
+    }, 220);
   }, { passive: true });
 
-  // Center navigation buttons if present
-  const navContainer = carousel.closest('section') || carousel.parentElement;
-  const navBtns = navContainer?.querySelector('.carousel-nav');
-  if (navBtns) {
-    navBtns.style.display = 'flex';
-    navBtns.style.justifyContent = 'center';
-    navBtns.style.alignItems = 'center';
-    navBtns.style.margin = '16px 0 0 0';
-  }
-  const prevBtn = navContainer?.querySelector('.carousel-nav__btn[aria-label="前へ"]');
-  const nextBtn = navContainer?.querySelector('.carousel-nav__btn[aria-label="次へ"]');
+  const navScope = carousel.closest('section') || carousel.parentElement;
+  const prevBtn = navScope?.querySelector('.carousel-nav__btn[aria-label="前へ"]');
+  const nextBtn = navScope?.querySelector('.carousel-nav__btn[aria-label="次へ"]');
+
   if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
+    prevBtn.addEventListener('click', (event) => {
+      event.preventDefault();
       stopAutoScroll();
-      scrollPrev();
+      movePrev();
       setTimeout(startAutoScroll, 3000);
     });
   }
+
   if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
+    nextBtn.addEventListener('click', (event) => {
+      event.preventDefault();
       stopAutoScroll();
-      scrollNext();
+      moveNext();
       setTimeout(startAutoScroll, 3000);
     });
   }
@@ -338,10 +350,7 @@ function initOneInterviewCarousel(carousel) {
   carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
   carousel.addEventListener('touchend', () => setTimeout(startAutoScroll, 3000), { passive: true });
 
-  startAutoScroll();
   window.addEventListener('resize', () => {
-    stopAutoScroll();
-    updateInitialPosition();
-    startAutoScroll();
+    scrollToIndex(currentIndex, 'auto');
   });
 }

@@ -2564,3 +2564,211 @@
   display: block;
 }
 
+
+/* ========================================
+   2026 Refinement Overrides
+   Minimal color, readability, responsive stability
+======================================== */
+
+.nav {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--border-light);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.nav__logo {
+  color: var(--text);
+}
+
+.nav__logo-icon {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: none;
+}
+
+.nav__cta,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn--accent,
+.btn--outline,
+button.btn,
+input[type="submit"] {
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  box-shadow: none;
+}
+
+.nav__cta:hover,
+.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn--accent:hover,
+.btn--outline:hover,
+button.btn:hover,
+input[type="submit"]:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+/* Keep text black by default; white on card hover */
+.card .card__title,
+.card .card__text,
+.card .card__link {
+  color: var(--black);
+  transition: color 0.3s ease;
+}
+
+.card:hover .card__title,
+.card:hover .card__text,
+.card:hover .card__link {
+  color: var(--white);
+}
+
+/* Image card readability: stronger overlay + stronger text */
+.card--category::before,
+.card--photo::before {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.card--category__content {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-md);
+  margin: var(--space-sm);
+  padding: var(--space-md);
+  transition: background var(--transition-fast);
+}
+
+.card--category__title,
+.card--category__desc,
+.card--category__arrow {
+  color: var(--black);
+  font-weight: 600;
+  opacity: 1;
+  transition: color 0.3s ease;
+}
+
+.card--category:hover .card--category__content {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.card--category:hover .card--category__title,
+.card--category:hover .card--category__desc,
+.card--category:hover .card--category__arrow {
+  color: var(--white);
+}
+
+.page-interviews .interview-card__image,
+.page-home .interview-card__image {
+  position: relative;
+}
+
+.page-interviews .interview-card__image::before,
+.page-home .interview-card__image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* Interview slider: hide bars and keep smooth snapping */
+.page-home .interview-carousel,
+.page-interviews .interview-carousel {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.page-home .interview-carousel::-webkit-scrollbar,
+.page-interviews .interview-carousel::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Flow line: straight vertical alignment, lighter toward bottom */
+.timeline {
+  position: relative;
+  padding-left: calc(var(--space-xl) + 10px);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-radius: 0;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-green-light) 100%);
+}
+
+.timeline__item::before {
+  left: calc(-1 * (var(--space-xl) + 10px));
+  background: var(--primary);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--primary-light);
+}
+
+/* Reduce heavy gradients and bright accents */
+.footer {
+  background: var(--dark-gray);
+}
+
+.cta-banner {
+  background: var(--primary);
+}
+
+.connect-card--line,
+.connect-card__cta--line,
+.connect-card__cta--primary {
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+.connect-card__cta--line:hover,
+.connect-card__cta--primary:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.card,
+.connect-card,
+.page-interviews .interview-card {
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover,
+.connect-card:hover,
+.page-interviews .interview-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Remove any manual slider indicator line if present */
+.carousel-scroll-indicator,
+.scroll-indicator,
+.interview-scroll-line {
+  display: none !important;
+}
+
+.nav__hamburger,
+.accordion__trigger,
+.tab {
+  border: none;
+  background: none;
+}
+
