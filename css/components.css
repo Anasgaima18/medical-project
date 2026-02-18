@@ -114,20 +114,23 @@
   align-items: center;
   gap: 6px;
   padding: 10px 24px;
-  background: var(--gradient-primary);
-  color: #fff;
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
   font-size: var(--fs-small);
   font-weight: 500;
   border-radius: var(--radius-full);
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.2);
-  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
 }
 
 .nav__cta:hover {
-  color: #fff;
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-primary);
+  box-shadow: var(--shadow-md);
 }
 
 /* Hamburger */
@@ -232,45 +235,49 @@
   overflow: hidden;
 }
 
-/* Primary Button - Matte, Soft Gradient */
+/* Primary Button - White bg, Green border, Green text */
 .btn--primary {
-  background: var(--primary);
-  background-image: linear-gradient(135deg, var(--primary) 0%, #3a8578 100%);
-  color: #fff;
-  box-shadow: var(--shadow-sm); /* Reduced shadow */
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover {
-  color: #fff;
-  transform: translateY(-1px); /* Minimal movement */
-  box-shadow: var(--shadow-md); /* Soft aura */
-  filter: brightness(1.05);
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn--outline {
-  background: transparent;
+  background: var(--white);
   color: var(--primary);
   border: 1.5px solid var(--primary);
 }
 
 .btn--outline:hover {
   background: var(--primary);
-  color: #fff;
+  color: var(--white);
   border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn--accent {
-  background: var(--gradient-accent-btn);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.2);
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn--accent:hover {
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-accent);
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn--ghost {
@@ -327,14 +334,14 @@
   left: 0;
   width: 3px;
   height: 0;
-  background: var(--primary); /* Solid accent, no gradient */
-  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 0;
   transition: height var(--transition-base);
 }
 
 .card:hover {
   transform: translateY(-2px); /* Grounded lift */
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   border-color: rgba(var(--primary-rgb), 0.12);
 }
 
@@ -380,12 +387,44 @@
   margin-bottom: var(--space-xs);
   font-weight: 600;
   color: var(--text);
+  transition: color var(--transition-fast);
 }
 
 .card__text {
-  color: var(--text-muted);
+  color: var(--text);
   font-size: var(--fs-small);
   line-height: 1.8;
+  transition: color var(--transition-fast);
+}
+
+/* Card Hover Effects */
+.card:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.card .card__title {
+  color: var(--text);
+  transition: color var(--transition-fast);
+}
+
+.card .card__text {
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.card:hover .card__title {
+  color: var(--white);
+}
+
+.card:hover .card__text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card:hover .card__icon {
+  background: var(--white);
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card__link {
@@ -480,8 +519,8 @@
 }
 
 .tag--accent {
-  background: var(--accent-light);
-  color: var(--accent-dark);
+  background: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 /* ---- Footer ---- */
@@ -568,7 +607,7 @@
 }
 
 .form-label .required {
-  color: var(--accent);
+  color: var(--primary);
   margin-left: 4px;
   font-size: var(--fs-xs);
 }
@@ -671,12 +710,12 @@
   width: 40px;
   height: 2px;
   background: var(--border);
-  border-radius: 1px;
+  border-radius: 0;
 }
 
 .progress-step.completed + .progress-step__line,
 .progress-step.active + .progress-step__line {
-  background: var(--primary);
+  background: linear-gradient(90deg, var(--primary) 0%, rgba(var(--primary-rgb), 0.4) 100%);
 }
 
 /* ---- Hero ---- */
@@ -925,8 +964,8 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, var(--primary) 0%, var(--border-light) 100%);
-  border-radius: 1px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 0;
 }
 
 .timeline__item {
@@ -1027,27 +1066,34 @@
 }
 
 .cta-banner .btn {
-  background: #fff;
+  background: var(--white);
   color: var(--primary);
+  border: 1.5px solid var(--primary);
   font-weight: 600;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-sm);
   position: relative;
   z-index: 1;
 }
 
 .cta-banner .btn:hover {
-  background: var(--primary-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .cta-banner .btn--accent-cta {
-  background: var(--gradient-accent-btn);
-  color: #fff;
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
 }
 
 .cta-banner .btn--accent-cta:hover {
-  box-shadow: var(--shadow-accent);
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
 }
 
 /* ---- Interview Card (interviews page only) ---- */
@@ -1101,6 +1147,54 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  background: var(--white);
+}
+
+/* Interview Carousel Styling */
+.interview-carousel {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  padding-bottom: var(--space-md);
+  cursor: grab;
+}
+
+.interview-carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.interview-carousel:active {
+  cursor: grabbing;
+}
+
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.carousel-nav__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.carousel-nav__btn:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-2px);
 }
 
 .page-interviews .interview-card__role {
@@ -1210,17 +1304,22 @@
 }
 
 .card--photo:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 50, 40, 0.9) 0%, rgba(0, 50, 40, 0.4) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.2) 100%);
   display: flex;
   align-items: flex-end;
   padding: var(--space-lg);
+  transition: background var(--transition-base);
+}
+
+.card--photo:hover .card__overlay {
+  background: linear-gradient(to top, rgba(0, 50, 40, 0.85) 0%, rgba(0, 50, 40, 0.6) 100%);
 }
 
 .card--photo .card__content {
@@ -1231,13 +1330,16 @@
 .card--photo .card__title {
   color: #fff;
   font-size: 1.5rem;
+  font-weight: 600;
   margin-bottom: var(--space-sm);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .card--photo .card__text {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 0.95rem;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 /* ---- Staff Profile Cards (Voices) ---- */
@@ -1911,25 +2013,28 @@
 .interview-carousel {
   display: flex;
   gap: var(--space-lg);
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   padding-bottom: var(--space-md);
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-light) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
 }
 
 .interview-carousel::-webkit-scrollbar {
-  height: 6px;
-}
-
-.interview-carousel::-webkit-scrollbar-track {
+  display: none;
+  width: 0;
+  height: 0;
   background: transparent;
 }
 
+.interview-carousel::-webkit-scrollbar-track {
+  display: none;
+}
+
 .interview-carousel::-webkit-scrollbar-thumb {
-  background: var(--border-light);
-  border-radius: 3px;
+  display: none;
 }
 
 .interview-card {
@@ -1945,8 +2050,8 @@
 }
 
 .interview-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .interview-card__img {
@@ -2002,7 +2107,8 @@
 .carousel-nav {
   display: flex;
   gap: var(--space-sm);
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   margin-top: var(--space-md);
 }
 

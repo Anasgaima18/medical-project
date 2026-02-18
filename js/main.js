@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initCounters();
   initStatBars();
+  initInterviewCarousel();
 });
 
 /* ---- Navigation ---- */
@@ -77,7 +78,7 @@ function initScrollProgress() {
     left: '0',
     height: '3px',
     width: '0%',
-    background: 'linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%)',
+    background: 'var(--primary)',
     zIndex: '1001',
     transition: 'width 50ms linear',
     borderRadius: '0 2px 2px 0'
@@ -221,4 +222,124 @@ function initStatBars() {
   }, { threshold: 0.5 });
 
   bars.forEach(bar => observer.observe(bar));
+}
+
+/* ---- Interview Carousel Auto-Scroll ---- */
+function initInterviewCarousel() {
+  const carousel = document.querySelector('.interview-carousel');
+  if (!carousel) return;
+
+  const cards = carousel.querySelectorAll('.interview-card');
+  if (cards.length <= 1) return;
+
+  let currentIndex = 0;
+  let autoScrollInterval = null;
+  let isScrolling = false;
+
+  function getCardWidth() {
+    if (cards.length === 0) return 340;
+    const card = cards[0];
+    const cardStyle = getComputedStyle(card);
+    const gap = parseInt(getComputedStyle(carousel).gap) || 24;
+    return card.offsetWidth + gap;
+  }
+
+  function scrollToIndex(index) {
+    if (isScrolling) return;
+    isScrolling = true;
+    const cardWidth = getCardWidth();
+    const scrollPosition = index * cardWidth;
+    
+    carousel.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+
+    setTimeout(() => {
+      isScrolling = false;
+    }, 500);
+  }
+
+  function nextSlide() {
+    if (isScrolling) return;
+    currentIndex = (currentIndex + 1) % cards.length;
+    scrollToIndex(currentIndex);
+    
+    // Loop back to start seamlessly
+    if (currentIndex === 0) {
+      setTimeout(() => {
+        carousel.scrollTo({ left: 0, behavior: 'auto' });
+      }, 300);
+    }
+  }
+
+  function startAutoScroll() {
+    if (autoScrollInterval) return;
+    autoScrollInterval = setInterval(nextSlide, 3000);
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+      autoScrollInterval = null;
+    }
+  }
+
+  // Start auto-scroll after initial load
+  setTimeout(startAutoScroll, 1000);
+
+  // Pause on hover or touch
+  carousel.addEventListener('mouseenter', stopAutoScroll);
+  carousel.addEventListener('mouseleave', startAutoScroll);
+  carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
+  carousel.addEventListener('touchend', () => {
+    setTimeout(startAutoScroll, 3000);
+  }, { passive: true });
+
+  // Update current index on manual scroll
+  let scrollTimeout;
+  carousel.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      const cardWidth = getCardWidth();
+      const scrollLeft = carousel.scrollLeft;
+      currentIndex = Math.round(scrollLeft / cardWidth);
+    }, 100);
+  }, { passive: true });
+
+  // Handle navigation buttons
+  const prevBtn = document.querySelector('.carousel-nav__btn[aria-label="前へ"]');
+  const nextBtn = document.querySelector('.carousel-nav__btn[aria-label="次へ"]');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      stopAutoScroll();
+      currentIndex = currentIndex > 0 ? currentIndex - 1 : cards.length - 1;
+      scrollToIndex(currentIndex);
+      setTimeout(startAutoScroll, 3000);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      stopAutoScroll();
+      nextSlide();
+      setTimeout(startAutoScroll, 3000);
+    });
+  }
+
+  // Reset on window resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      stopAutoScroll();
+      const cardWidth = getCardWidth();
+      currentIndex = Math.round(carousel.scrollLeft / cardWidth);
+      scrollToIndex(currentIndex);
+      setTimeout(startAutoScroll, 1000);
+    }, 250);
+  });
 }
