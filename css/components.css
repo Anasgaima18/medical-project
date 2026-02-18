@@ -2871,11 +2871,58 @@ input[type="submit"]:hover {
   color: var(--primary);
 }
 
+/* Jobs page tab bar refinement */
 .page-jobs .tabs {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  margin-bottom: var(--space-lg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  overflow-x: auto;
   scrollbar-width: none;
 }
 
 .page-jobs .tabs::-webkit-scrollbar {
   display: none;
+}
+
+.page-jobs .tab {
+  flex: 1 1 0;
+  min-width: max-content;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  background: var(--white);
+  font-weight: 600;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.page-jobs .tab:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.page-jobs .tab.active {
+  color: var(--white);
+  background: var(--primary);
+  border-color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .page-jobs .tabs {
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .page-jobs .tab {
+    flex: 0 0 auto;
+    padding: 10px 14px;
+  }
 }
 
