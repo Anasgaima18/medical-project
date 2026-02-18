@@ -233,6 +233,18 @@ function initOneInterviewCarousel(carousel) {
   const originalCards = Array.from(carousel.querySelectorAll('.interview-card'));
   if (originalCards.length === 0) return;
 
+  // Remove manual scroll indicator if present
+  const indicator = carousel.querySelector('.carousel-scroll-indicator');
+  if (indicator) indicator.remove();
+
+  // Remove horizontal scrollbar visually
+  carousel.style.overflowX = 'hidden';
+  carousel.style.scrollbarWidth = 'none';
+  carousel.style.msOverflowStyle = 'none';
+  carousel.style.position = 'relative';
+  carousel.style.scrollBehavior = 'smooth';
+  carousel.classList.add('no-scrollbar');
+
   // Clone items for infinite loop (append and prepend)
   originalCards.forEach(card => {
     const clone = card.cloneNode(true);
@@ -293,7 +305,15 @@ function initOneInterviewCarousel(carousel) {
     }
   }, { passive: true });
 
+  // Center navigation buttons if present
   const navContainer = carousel.closest('section') || carousel.parentElement;
+  const navBtns = navContainer?.querySelector('.carousel-nav');
+  if (navBtns) {
+    navBtns.style.display = 'flex';
+    navBtns.style.justifyContent = 'center';
+    navBtns.style.alignItems = 'center';
+    navBtns.style.margin = '16px 0 0 0';
+  }
   const prevBtn = navContainer?.querySelector('.carousel-nav__btn[aria-label="前へ"]');
   const nextBtn = navContainer?.querySelector('.carousel-nav__btn[aria-label="次へ"]');
   if (prevBtn) {

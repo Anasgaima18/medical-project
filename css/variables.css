@@ -4,32 +4,21 @@
 ======================================== */
 
 :root {
-  /* Color — muted, neutral base + 1 accent */
-  --primary: #2e6b62;
-  --primary-dark: #1e4d46;
-  --primary-light: #e8f0ee;
-  --primary-rgb: 46, 107, 98;
-  --primary-50: #f0f7f5;
-
-  /* Accent - Using primary green only (no orange) */
-  --accent: var(--primary); 
-  --accent-dark: var(--primary-dark);
-  --accent-light: var(--primary-light);
-  --accent-rgb: var(--primary-rgb);
-
-  --line-brand: #06C755;
-  --line-brand-hover: #05B04C;
-  --line-brand-rgb: 6, 199, 85;
-
-  --text: #1a1a2e;
-  --text-muted: #5a6b7a;
-  --text-light: #8a9baa;
-
-  --bg: #fafbfa;
-  --bg-alt: #f3f5f3;
-  --bg-warm: #f9f7f4;
-  --white: #ffffff;
-
+  /* Color — Japanese minimal palette */
+  --primary-green: #27ae60;
+  --primary-green-light: #6fdc9c;
+  --white: #fff;
+  --light-gray: #f5f5f5;
+  --dark-gray: #222;
+  --black: #000;
+  /* Button and overlay */
+  --button-bg: var(--white);
+  --button-border: var(--primary-green);
+  --button-text: var(--primary-green);
+  --button-hover-bg: var(--primary-green);
+  --button-hover-text: var(--white);
+  --overlay-dark: rgba(0,0,0,0.5);
+  /* Border */
   --border: #dce3e1;
   --border-light: #edf1ef;
 
@@ -95,14 +84,5 @@
   --shadow-primary: 0 0 8px rgba(var(--primary-rgb), 0.08);
   --shadow-accent: 0 0 8px rgba(var(--primary-rgb), 0.08);
 
-  /* Gradients - Minimal, subtle gradients only */
-  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  --gradient-hero: linear-gradient(160deg, var(--bg) 0%, var(--primary-light) 30%, var(--bg-alt) 100%);
-  --gradient-hero-mesh: radial-gradient(ellipse at 20% 50%, rgba(var(--primary-rgb), 0.04) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 20%, rgba(var(--primary-rgb), 0.02) 0%, transparent 50%);
-  --gradient-dark: linear-gradient(180deg, #1a1a2e 0%, #1e1e2e 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
-  --gradient-section-warm: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
-  --gradient-cta: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  --gradient-accent-btn: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  /* Gradients removed for minimal color usage */
 }

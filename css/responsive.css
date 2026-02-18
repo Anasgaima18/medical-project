@@ -1,4 +1,8 @@
 /* ========================================
+  Responsive — Mobile-first breakpoints
+  Enterprise-level adaptive design
+======================================== */
+/* ========================================
    Responsive — Mobile-first breakpoints
    Enterprise-level adaptive design
 ======================================== */
@@ -131,6 +135,119 @@
     width: 200px;
     height: 200px;
   }
+}
+
+/* Responsive styles - improved for all breakpoints */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+@media (max-width: 1440px) {
+    html { font-size: 15px; }
+    .container { max-width: 1200px; }
+}
+@media (max-width: 1024px) {
+    html { font-size: 14px; }
+    .container { max-width: 900px; }
+    .hero-text { font-size: 2rem; }
+}
+@media (max-width: 768px) {
+    html { font-size: 13px; }
+    .container { max-width: 700px; padding: 0 16px; }
+    .card-grid { display: flex; flex-direction: column; gap: 16px; }
+    .hero-text { font-size: 1.5rem; }
+    nav ul { flex-direction: column; }
+    nav ul li { margin-bottom: 8px; }
+}
+@media (max-width: 480px) {
+    html { font-size: 12px; }
+    .container { max-width: 100%; padding: 0 8px; }
+    .card-grid { gap: 8px; }
+    .hero-text { font-size: 1.2rem; }
+    .card { padding: 8px; }
+    nav ul { flex-direction: column; }
+    nav ul li { margin-bottom: 8px; }
+}
+@media (max-width: 320px) {
+    html { font-size: 11px; }
+    .container { max-width: 100%; padding: 0 4px; }
+    .hero-text { font-size: 1rem; }
+}
+
+/* Card grid stacks on mobile */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+@media (max-width: 768px) {
+    .card-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* Hero section text readable on mobile */
+.hero-text {
+    color: var(--dark-gray);
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+@media (max-width: 480px) {
+    .hero-text {
+        color: var(--dark-gray);
+        font-size: 1.2rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+}
+
+/* Navigation menu for small screens */
+nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+        background: var(--white);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        z-index: 100;
+    }
+}
+
+/* Remove horizontal overflow */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Consistent spacing (8px grid) */
+.section {
+    margin-bottom: 32px;
+    padding: 24px 0;
+}
+@media (max-width: 480px) {
+    .section {
+        margin-bottom: 16px;
+        padding: 12px 0;
+    }
+}
+
+/* ...existing code... */
 }
 
 /* Mobile — 480px */
