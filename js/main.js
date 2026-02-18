@@ -224,90 +224,114 @@ function initStatBars() {
   bars.forEach(bar => observer.observe(bar));
 }
 
-/* ---- Interview Carousel Auto-Scroll ---- */
+/* ---- Interview Carousel Infinite Scroll ---- */
 function initInterviewCarousel() {
   const carousel = document.querySelector('.interview-carousel');
   if (!carousel) return;
 
-  const cards = carousel.querySelectorAll('.interview-card');
-  if (cards.length <= 1) return;
+  const originalCards = Array.from(carousel.querySelectorAll('.interview-card'));
+  if (originalCards.length === 0) return;
 
-  let currentIndex = 0;
-  let autoScrollInterval = null;
+  // Clone items for infinite loop (Append and Prepend)
+  // We clone the entire set to ensure we have enough buffer for wide screens
+  originalCards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.classList.add('clone-end');
+    carousel.appendChild(clone);
+  });
+
+  // Prepend clones in reverse order to maintain correct sequence visually when we jump
+  [...originalCards].reverse().forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.classList.add('clone-start');
+    carousel.insertBefore(clone, carousel.firstChild);
+  });
+
+  // Re-query all cards including clones
+  let allCards = Array.from(carousel.querySelectorAll('.interview-card'));
   let isScrolling = false;
+  let autoScrollInterval;
 
-  function getCardWidth() {
-    if (cards.length === 0) return 340;
-    const card = cards[0];
-    const cardStyle = getComputedStyle(card);
-    const gap = parseInt(getComputedStyle(carousel).gap) || 24;
-    return card.offsetWidth + gap;
-  }
-
-  function scrollToIndex(index) {
-    if (isScrolling) return;
-    isScrolling = true;
-    const cardWidth = getCardWidth();
-    const scrollPosition = index * cardWidth;
-    
-    carousel.scrollTo({
-      left: scrollPosition,
-      behavior: 'smooth'
-    });
-
-    setTimeout(() => {
-      isScrolling = false;
-    }, 500);
-  }
-
-  function nextSlide() {
-    if (isScrolling) return;
-    currentIndex = (currentIndex + 1) % cards.length;
-    scrollToIndex(currentIndex);
-    
-    // Loop back to start seamlessly
-    if (currentIndex === 0) {
-      setTimeout(() => {
-        carousel.scrollTo({ left: 0, behavior: 'auto' });
-      }, 300);
+  // Initial Position: Scroll to the start of the "real" set
+  // We inserted 'originalCards.length' clones at the start.
+  const updateInitialPosition = () => {
+    // Calculate width of the first 'originalCards.length' items
+    // Since widths might vary or have gaps, it's safer to measure offsetLeft of the first REAL card
+    const firstRealCard = allCards[originalCards.length]; 
+    if (firstRealCard) {
+        carousel.scrollLeft = firstRealCard.offsetLeft - parseFloat(getComputedStyle(carousel).paddingLeft || 0);
     }
-  }
+  };
 
-  function startAutoScroll() {
-    if (autoScrollInterval) return;
-    autoScrollInterval = setInterval(nextSlide, 3000);
-  }
+  // Wait for layout
+  setTimeout(updateInitialPosition, 100);
 
-  function stopAutoScroll() {
+  // Auto Scroll Logic
+  const startAutoScroll = () => {
+    stopAutoScroll();
+    autoScrollInterval = setInterval(() => {
+      if (!isScrolling) {
+        scrollNext();
+      }
+    }, 3000);
+  };
+
+  const stopAutoScroll = () => {
     if (autoScrollInterval) {
       clearInterval(autoScrollInterval);
       autoScrollInterval = null;
     }
-  }
+  };
 
-  // Start auto-scroll after initial load
-  setTimeout(startAutoScroll, 1000);
+  const scrollNext = () => {
+    if (isScrolling) return;
+    const currentScroll = carousel.scrollLeft;
+    const cardWidth = allCards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 24);
+    
+    carousel.scrollTo({
+      left: currentScroll + cardWidth,
+      behavior: 'smooth'
+    });
+  };
 
-  // Pause on hover or touch
-  carousel.addEventListener('mouseenter', stopAutoScroll);
-  carousel.addEventListener('mouseleave', startAutoScroll);
-  carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
-  carousel.addEventListener('touchend', () => {
-    setTimeout(startAutoScroll, 3000);
-  }, { passive: true });
+  const scrollPrev = () => {
+    if (isScrolling) return;
+    const currentScroll = carousel.scrollLeft;
+    const cardWidth = allCards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 24);
+    
+    carousel.scrollTo({
+      left: currentScroll - cardWidth,
+      behavior: 'smooth'
+    });
+  };
 
-  // Update current index on manual scroll
-  let scrollTimeout;
+  // Infinite Loop Logic (Jump when reaching ends)
   carousel.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      const cardWidth = getCardWidth();
-      const scrollLeft = carousel.scrollLeft;
-      currentIndex = Math.round(scrollLeft / cardWidth);
-    }, 100);
+    if (isScrolling) return;
+
+    const scrollLeft = carousel.scrollLeft;
+    const scrollWidth = carousel.scrollWidth;
+    const clientWidth = carousel.clientWidth;
+    
+    // Total width of one set of cards (approx)
+    const singleSetWidth = (scrollWidth / 3); // Since we have 3 sets: CloneStart, Real, CloneEnd
+
+    // Thresholds
+    // If we've scrolled past the Real set into CloneEnd
+    if (scrollLeft >= singleSetWidth * 2 - clientWidth / 2) { 
+       // Jump back to start of Real set (subtract one set width)
+       carousel.scrollLeft -= singleSetWidth;
+    }
+    // If we've scrolled back into CloneStart
+    else if (scrollLeft <= singleSetWidth / 2) {
+       // Jump forward to start of Real set (add one set width)
+       carousel.scrollLeft += singleSetWidth;
+    }
   }, { passive: true });
 
-  // Handle navigation buttons
+  // Navigation Buttons
   const prevBtn = document.querySelector('.carousel-nav__btn[aria-label="前へ"]');
   const nextBtn = document.querySelector('.carousel-nav__btn[aria-label="次へ"]');
 
@@ -315,9 +339,8 @@ function initInterviewCarousel() {
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
       stopAutoScroll();
-      currentIndex = currentIndex > 0 ? currentIndex - 1 : cards.length - 1;
-      scrollToIndex(currentIndex);
-      setTimeout(startAutoScroll, 3000);
+      scrollPrev();
+      setTimeout(startAutoScroll, 3000); // Restart after interaction
     });
   }
 
@@ -325,21 +348,24 @@ function initInterviewCarousel() {
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
       stopAutoScroll();
-      nextSlide();
+      scrollNext();
       setTimeout(startAutoScroll, 3000);
     });
   }
 
-  // Reset on window resize
-  let resizeTimeout;
+  // Interactions pause auto-scroll
+  carousel.addEventListener('mouseenter', stopAutoScroll);
+  carousel.addEventListener('mouseleave', startAutoScroll);
+  carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
+  carousel.addEventListener('touchend', () => setTimeout(startAutoScroll, 3000), { passive: true });
+
+  // Start
+  startAutoScroll();
+  
+  // Resize handler
   window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
       stopAutoScroll();
-      const cardWidth = getCardWidth();
-      currentIndex = Math.round(carousel.scrollLeft / cardWidth);
-      scrollToIndex(currentIndex);
-      setTimeout(startAutoScroll, 1000);
-    }, 250);
+      updateInitialPosition();
+      startAutoScroll();
   });
 }

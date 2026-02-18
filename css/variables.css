@@ -38,6 +38,10 @@
   --font-body: "Noto Sans JP", "Helvetica Neue", "Arial", sans-serif;
   --font-en: "Inter", "Helvetica Neue", sans-serif;
 
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
   --fs-hero: clamp(2.2rem, 5.5vw, 3.8rem);
   --fs-h1: clamp(1.8rem, 3.5vw, 2.6rem);
   --fs-h2: clamp(1.4rem, 2.5vw, 1.95rem);
