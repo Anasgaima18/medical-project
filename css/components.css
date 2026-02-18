@@ -2661,20 +2661,6 @@ input[type="submit"]:hover {
   color: var(--white);
 }
 
-.page-interviews .interview-card__image,
-.page-home .interview-card__image {
-  position: relative;
-}
-
-.page-interviews .interview-card__image::before,
-.page-home .interview-card__image::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  pointer-events: none;
-}
-
 /* Interview slider: hide bars and keep smooth snapping */
 .page-home .interview-carousel,
 .page-interviews .interview-carousel {
@@ -2770,5 +2756,89 @@ input[type="submit"]:hover {
 .tab {
   border: none;
   background: none;
+}
+
+/* Hero readability fixes */
+.hero--cinematic__title {
+  color: var(--white);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.hero--cinematic__subtitle {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.32);
+}
+
+.hero--cinematic__actions .btn--primary,
+.hero--cinematic__actions .btn--outline {
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+.hero--cinematic__actions .btn--primary:hover,
+.hero--cinematic__actions .btn--outline:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.hero__categories {
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+}
+
+/* Interview carousel layout stabilization (home + interviews) */
+.page-home .interview-carousel,
+.page-interviews .interview-carousel {
+  display: flex;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  padding-bottom: var(--space-md);
+}
+
+.page-home .interview-carousel > .interview-card,
+.page-interviews .interview-carousel > .interview-card {
+  flex: 0 0 clamp(300px, 32vw, 420px);
+  min-width: 0;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-interviews .interview-card {
+  grid-template-columns: none;
+  gap: 0;
+}
+
+.page-home .interview-card__img,
+.page-interviews .interview-card__img,
+.page-interviews .interview-card__image {
+  width: 100%;
+  height: 220px;
+  min-height: 220px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.page-interviews .interview-card__image {
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.page-home .interview-card__body,
+.page-interviews .interview-card__body {
+  padding: var(--space-md);
+  display: block;
+}
+
+.page-home .interview-card__title,
+.page-home .interview-card__excerpt,
+.page-interviews .interview-card__quote,
+.page-interviews .interview-card__name,
+.page-interviews .interview-card__body p {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-height: 1.7;
 }
 
