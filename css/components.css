@@ -2614,17 +2614,23 @@ input[type="submit"]:hover {
   border-color: var(--primary);
 }
 
-/* Keep text black by default; white on card hover */
-.card .card__title,
-.card .card__text,
-.card .card__link {
+/* Keep text black by default; white on card hover (except photo cards) */
+.card:not(.card--photo) .card__title,
+.card:not(.card--photo) .card__text,
+.card:not(.card--photo) .card__link {
   color: var(--black);
   transition: color 0.3s ease;
 }
 
-.card:hover .card__title,
-.card:hover .card__text,
-.card:hover .card__link {
+.card:not(.card--photo):hover .card__title,
+.card:not(.card--photo):hover .card__text,
+.card:not(.card--photo):hover .card__link {
+  color: var(--white);
+}
+
+/* Photo cards must keep high-contrast white copy on images */
+.card--photo .card__title,
+.card--photo .card__text {
   color: var(--white);
 }
 
@@ -2840,5 +2846,36 @@ input[type="submit"]:hover {
   word-break: keep-all;
   overflow-wrap: break-word;
   line-height: 1.7;
+}
+
+/* Jobs page: keep listing cards readable and stable */
+.page-jobs #all-jobs .card {
+  background: var(--white);
+}
+
+.page-jobs #all-jobs .card:hover {
+  background: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.page-jobs #all-jobs .card:hover .card__title,
+.page-jobs #all-jobs .card:hover .card__text,
+.page-jobs #all-jobs .card:hover .card__link,
+.page-jobs #all-jobs .card:hover .job-table td:first-child,
+.page-jobs #all-jobs .card:hover .job-table td:last-child {
+  color: var(--text);
+}
+
+.page-jobs #all-jobs .card:hover .card__link {
+  color: var(--primary);
+}
+
+.page-jobs .tabs {
+  scrollbar-width: none;
+}
+
+.page-jobs .tabs::-webkit-scrollbar {
+  display: none;
 }
 

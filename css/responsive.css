@@ -231,6 +231,31 @@ iframe {
   .form-card {
     padding: var(--space-md);
   }
+
+  /* Jobs page table readability on small mobile */
+  .page-jobs .job-table,
+  .page-jobs .job-table tbody,
+  .page-jobs .job-table tr,
+  .page-jobs .job-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .page-jobs .job-table tr {
+    padding: 8px 0;
+  }
+
+  .page-jobs .job-table td {
+    padding: 2px 0;
+  }
+
+  .page-jobs .job-table td:first-child {
+    width: auto;
+    padding-right: 0;
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
 }
 
 /* 320px and below */
