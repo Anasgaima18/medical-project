@@ -100,7 +100,7 @@ input, textarea, select {
 }
 
 .section {
-  padding: var(--space-3xl) 0; /* Generous 'Ma' — sections breathe */
+  padding: var(--space-3xl) 0; /* 8px grid; more white space between sections */
 }
 
 .section--alt {

@@ -405,12 +405,12 @@
 
 .card .card__title {
   color: var(--text);
-  transition: color var(--transition-fast);
+  transition: color 0.3s ease;
 }
 
 .card .card__text {
   color: var(--text-muted);
-  transition: color var(--transition-fast);
+  transition: color 0.3s ease;
 }
 
 .card:hover .card__title {
@@ -418,7 +418,7 @@
 }
 
 .card:hover .card__text {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .card:hover .card__icon {
@@ -951,20 +951,27 @@
   display: block;
 }
 
-/* ---- Timeline ---- */
+/* ---- Timeline (flow line): straight vertical, gradient lighter toward bottom ---- */
 .timeline {
   position: relative;
-  padding-left: var(--space-xl);
+  padding-left: calc(var(--space-xl) + 14px);
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 12px;
-  top: 10px;
+  left: 0;
+  top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+  /* Straight vertical; dark green at top, lighter green at bottom */
+  background: linear-gradient(
+    180deg,
+    var(--primary-dark) 0%,
+    var(--primary) 30%,
+    rgba(var(--primary-rgb), 0.5) 70%,
+    var(--primary-light) 100%
+  );
   border-radius: 0;
 }
 
@@ -976,7 +983,7 @@
 .timeline__item::before {
   content: '';
   position: absolute;
-  left: calc(-1 * var(--space-xl) + 7px);
+  left: calc(-1 * (var(--space-xl) + 14px) - 6px); /* align dot center with 2px line */
   top: 4px;
   width: 12px;
   height: 12px;
@@ -1151,30 +1158,32 @@
 }
 
 /* Interview Carousel Styling */
-.interview-carousel {
+.page-home .interview-carousel {
   display: flex;
   gap: var(--space-lg);
   overflow-x: auto;
   scroll-behavior: smooth;
   -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none;     /* Firefox */
   padding-bottom: var(--space-md);
   cursor: grab;
 }
 
-.interview-carousel::-webkit-scrollbar {
+.page-home .interview-carousel::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
 
-.interview-carousel:active {
+.page-home .interview-carousel:active {
   cursor: grabbing;
 }
 
 .carousel-nav {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: var(--space-md);
   margin-top: var(--space-lg);
+  width: 100%;
 }
 
 .carousel-nav__btn {
@@ -1311,8 +1320,14 @@
 .card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.2) 100%);
-  background-color: rgba(0, 0, 0, 0.5); /* Fallback / Base */
+  /* Darker overlay rgba(0,0,0,0.5) for WCAG-readable contrast */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: flex-end;
   padding: var(--space-lg);
@@ -1320,7 +1335,12 @@
 }
 
 .card--photo:hover .card__overlay {
-  background: linear-gradient(to top, rgba(0, 50, 40, 0.85) 0%, rgba(0, 50, 40, 0.6) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(0, 40, 35, 0.7) 0%,
+    rgba(0, 40, 35, 0.55) 60%,
+    rgba(0, 40, 35, 0.4) 100%
+  );
 }
 
 .card--photo .card__content {
@@ -1333,14 +1353,16 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: var(--space-sm);
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  transition: color 0.3s ease;
 }
 
 .card--photo .card__text {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.98);
   font-size: 0.95rem;
-  font-weight: 500;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  transition: color 0.3s ease;
 }
 
 /* ---- Staff Profile Cards (Voices) ---- */
@@ -1732,14 +1754,20 @@
   flex-wrap: wrap;
 }
 
-/* Accent button variant */
+/* Accent button variant (align with primary button styling) */
 .btn--accent {
-  background: var(--accent);
-  color: #fff;
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn--accent:hover {
-  background: var(--accent-dark);
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 /* ============================================
@@ -2010,12 +2038,13 @@
   transform: translateX(4px);
 }
 
-/* --- Interview Carousel --- */
-.interview-carousel {
+/* --- Interview Carousel (interviews page slider) --- */
+.page-interviews .interview-carousel {
   display: flex;
   gap: var(--space-lg);
-  overflow-x: hidden;
+  overflow-x: auto;                /* Allow programmatic scroll; scrollbar hidden below */
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-bottom: var(--space-md);
   scrollbar-width: none;
@@ -2023,22 +2052,22 @@
   position: relative;
 }
 
-.interview-carousel::-webkit-scrollbar {
+.page-interviews .interview-carousel::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
   background: transparent;
 }
 
-.interview-carousel::-webkit-scrollbar-track {
+.page-interviews .interview-carousel::-webkit-scrollbar-track {
   display: none;
 }
 
-.interview-carousel::-webkit-scrollbar-thumb {
+.page-interviews .interview-carousel::-webkit-scrollbar-thumb {
   display: none;
 }
 
-.interview-card {
+.page-interviews .interview-card {
   flex: 0 0 320px;
   scroll-snap-align: start;
   border-radius: var(--border-radius-lg);
@@ -2050,29 +2079,29 @@
   transition: var(--transition-base);
 }
 
-.interview-card:hover {
+.page-interviews .interview-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
-.interview-card__img {
+.page-interviews .interview-card__img {
   width: 100%;
   height: 220px;
   object-fit: cover;
 }
 
-.interview-card__body {
+.page-interviews .interview-card__body {
   padding: var(--space-md);
 }
 
-.interview-card__meta {
+.page-interviews .interview-card__meta {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   margin-bottom: var(--space-sm);
 }
 
-.interview-card__tag {
+.page-interviews .interview-card__tag {
   font-size: var(--fs-xs);
   padding: 3px 10px;
   border-radius: var(--border-radius-sm);
@@ -2081,12 +2110,12 @@
   font-weight: 600;
 }
 
-.interview-card__date {
+.page-interviews .interview-card__date {
   font-size: var(--fs-xs);
   color: var(--text-muted);
 }
 
-.interview-card__title {
+.page-interviews .interview-card__title {
   font-size: var(--fs-body);
   font-weight: 600;
   line-height: 1.5;
@@ -2094,7 +2123,7 @@
   color: var(--text);
 }
 
-.interview-card__excerpt {
+.page-interviews .interview-card__excerpt {
   font-size: var(--fs-small);
   color: var(--text-muted);
   line-height: 1.6;
@@ -2111,6 +2140,7 @@
   justify-content: center;
   align-items: center;
   margin-top: var(--space-md);
+  width: 100%;
 }
 
 .carousel-nav__btn {

@@ -224,24 +224,22 @@ function initStatBars() {
   bars.forEach(bar => observer.observe(bar));
 }
 
-/* ---- Interview Carousel Infinite Scroll ---- */
+/* ---- Interview Carousel: auto-scroll 3s, infinite loop, no scrollbar ---- */
 function initInterviewCarousel() {
-  const carousel = document.querySelector('.interview-carousel');
-  if (!carousel) return;
+  document.querySelectorAll('.interview-carousel').forEach(carousel => initOneInterviewCarousel(carousel));
+}
 
+function initOneInterviewCarousel(carousel) {
   const originalCards = Array.from(carousel.querySelectorAll('.interview-card'));
   if (originalCards.length === 0) return;
 
-  // Clone items for infinite loop (Append and Prepend)
-  // We clone the entire set to ensure we have enough buffer for wide screens
+  // Clone items for infinite loop (append and prepend)
   originalCards.forEach(card => {
     const clone = card.cloneNode(true);
     clone.setAttribute('aria-hidden', 'true');
     clone.classList.add('clone-end');
     carousel.appendChild(clone);
   });
-
-  // Prepend clones in reverse order to maintain correct sequence visually when we jump
   [...originalCards].reverse().forEach(card => {
     const clone = card.cloneNode(true);
     clone.setAttribute('aria-hidden', 'true');
@@ -249,33 +247,21 @@ function initInterviewCarousel() {
     carousel.insertBefore(clone, carousel.firstChild);
   });
 
-  // Re-query all cards including clones
-  let allCards = Array.from(carousel.querySelectorAll('.interview-card'));
-  let isScrolling = false;
+  const allCards = Array.from(carousel.querySelectorAll('.interview-card'));
   let autoScrollInterval;
 
-  // Initial Position: Scroll to the start of the "real" set
-  // We inserted 'originalCards.length' clones at the start.
   const updateInitialPosition = () => {
-    // Calculate width of the first 'originalCards.length' items
-    // Since widths might vary or have gaps, it's safer to measure offsetLeft of the first REAL card
-    const firstRealCard = allCards[originalCards.length]; 
+    const firstRealCard = allCards[originalCards.length];
     if (firstRealCard) {
-        carousel.scrollLeft = firstRealCard.offsetLeft - parseFloat(getComputedStyle(carousel).paddingLeft || 0);
+      carousel.scrollLeft = firstRealCard.offsetLeft - parseFloat(getComputedStyle(carousel).paddingLeft || 0);
     }
   };
 
-  // Wait for layout
   setTimeout(updateInitialPosition, 100);
 
-  // Auto Scroll Logic
   const startAutoScroll = () => {
     stopAutoScroll();
-    autoScrollInterval = setInterval(() => {
-      if (!isScrolling) {
-        scrollNext();
-      }
-    }, 3000);
+    autoScrollInterval = setInterval(() => scrollNext(), 3000);
   };
 
   const stopAutoScroll = () => {
@@ -286,64 +272,38 @@ function initInterviewCarousel() {
   };
 
   const scrollNext = () => {
-    if (isScrolling) return;
-    const currentScroll = carousel.scrollLeft;
     const cardWidth = allCards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 24);
-    
-    carousel.scrollTo({
-      left: currentScroll + cardWidth,
-      behavior: 'smooth'
-    });
+    carousel.scrollTo({ left: carousel.scrollLeft + cardWidth, behavior: 'smooth' });
   };
 
   const scrollPrev = () => {
-    if (isScrolling) return;
-    const currentScroll = carousel.scrollLeft;
     const cardWidth = allCards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 24);
-    
-    carousel.scrollTo({
-      left: currentScroll - cardWidth,
-      behavior: 'smooth'
-    });
+    carousel.scrollTo({ left: carousel.scrollLeft - cardWidth, behavior: 'smooth' });
   };
 
-  // Infinite Loop Logic (Jump when reaching ends)
   carousel.addEventListener('scroll', () => {
-    if (isScrolling) return;
-
     const scrollLeft = carousel.scrollLeft;
     const scrollWidth = carousel.scrollWidth;
     const clientWidth = carousel.clientWidth;
-    
-    // Total width of one set of cards (approx)
-    const singleSetWidth = (scrollWidth / 3); // Since we have 3 sets: CloneStart, Real, CloneEnd
-
-    // Thresholds
-    // If we've scrolled past the Real set into CloneEnd
-    if (scrollLeft >= singleSetWidth * 2 - clientWidth / 2) { 
-       // Jump back to start of Real set (subtract one set width)
-       carousel.scrollLeft -= singleSetWidth;
-    }
-    // If we've scrolled back into CloneStart
-    else if (scrollLeft <= singleSetWidth / 2) {
-       // Jump forward to start of Real set (add one set width)
-       carousel.scrollLeft += singleSetWidth;
+    const singleSetWidth = scrollWidth / 3;
+    if (scrollLeft >= singleSetWidth * 2 - clientWidth / 2) {
+      carousel.scrollLeft -= singleSetWidth;
+    } else if (scrollLeft <= singleSetWidth / 2) {
+      carousel.scrollLeft += singleSetWidth;
     }
   }, { passive: true });
 
-  // Navigation Buttons
-  const prevBtn = document.querySelector('.carousel-nav__btn[aria-label="前へ"]');
-  const nextBtn = document.querySelector('.carousel-nav__btn[aria-label="次へ"]');
-
+  const navContainer = carousel.closest('section') || carousel.parentElement;
+  const prevBtn = navContainer?.querySelector('.carousel-nav__btn[aria-label="前へ"]');
+  const nextBtn = navContainer?.querySelector('.carousel-nav__btn[aria-label="次へ"]');
   if (prevBtn) {
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
       stopAutoScroll();
       scrollPrev();
-      setTimeout(startAutoScroll, 3000); // Restart after interaction
+      setTimeout(startAutoScroll, 3000);
     });
   }
-
   if (nextBtn) {
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -353,19 +313,15 @@ function initInterviewCarousel() {
     });
   }
 
-  // Interactions pause auto-scroll
   carousel.addEventListener('mouseenter', stopAutoScroll);
   carousel.addEventListener('mouseleave', startAutoScroll);
   carousel.addEventListener('touchstart', stopAutoScroll, { passive: true });
   carousel.addEventListener('touchend', () => setTimeout(startAutoScroll, 3000), { passive: true });
 
-  // Start
   startAutoScroll();
-  
-  // Resize handler
   window.addEventListener('resize', () => {
-      stopAutoScroll();
-      updateInitialPosition();
-      startAutoScroll();
+    stopAutoScroll();
+    updateInitialPosition();
+    startAutoScroll();
   });
 }
