@@ -5,53 +5,55 @@
 
 /* 
   1. Hero Background Images (Medical Themed)
-  Using LoremFlickr for keyword-specific medical imagery.
-  Add '?lock=1' to URLs to keep the image consistent across reloads if desired.
+  Unified to local Japanese medical photos.
 */
 body.page-home .hero {
-  /* Keywords: medical, hospital, clean */
-  background-image: url('../images/hero-medical-team.jpg');
+  background-image: url('../images/card-flexibility.jpg');
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
 body.page-about .page-hero {
-  /* Keywords: doctor, team, meeting */
-  background-image: url('https://loremflickr.com/1920/600/doctors/all?lock=221');
+  background-image: url('../images/download%20(16).jpeg');
   background-size: cover;
   background-position: center;
 }
 
 body.page-jobs .page-hero {
-  /* Keywords: nurse, working, healthcare */
-  background-image: url('https://loremflickr.com/1920/600/nurse/all?lock=222');
+  background-image: url('../images/download%20(11).jpeg');
   background-size: cover;
   background-position: center;
 }
 
 body.page-interviews .page-hero {
-  /* User-provided: 7_healthcare_interview_questions */
-  background-image: url('../images/7_healthcare_interview_questions.jpg');
+  background-image: url('../images/download%20(15).jpeg');
   background-size: cover;
   background-position: center;
 }
 
 body.page-environment .page-hero {
-  /* User-provided: medical202 */
-  background-image: url('../images/66cff132ed748637aed80b57_66cff11f6674801c76859528_medical202.png');
+  background-image: url('../images/download%20(14).jpeg');
   background-size: cover;
   background-position: center;
 }
 
-body.page-connect .page-hero,
-body.page-simple .page-hero {
-  /* User-provided: LINE Logo */
-  background-image: url('../images/line_logo.svg');
-  background-size: 80px;
-  background-repeat: no-repeat;
+body.page-connect .page-hero {
+  background-image: url('../images/jp-clinic-waiting-room.jpg');
+  background-size: cover;
   background-position: center;
-  background-color: #06C755; /* LINE Brand Green */
+}
+
+body.page-faq .page-hero {
+  background-image: url('../images/jp-patients-waiting.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+body.page-simple .page-hero {
+  background-image: url('../images/page-bg.svg');
+  background-size: cover;
+  background-position: center;
 }
 
 /* Overlay for readability (Teal Brand Tint) */
@@ -93,6 +95,7 @@ body.page-jobs,
 body.page-interviews,
 body.page-environment,
 body.page-connect,
+body.page-faq,
 body.page-simple {
   background-color: var(--bg);
   background-image: url('../images/page-bg.svg');

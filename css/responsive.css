@@ -105,8 +105,9 @@ iframe {
   }
 
   .hero,
-  .hero--cinematic {
-    min-height: 70vh;
+  .hero--cinematic,
+  .page-hero {
+    min-height: 62vh;
   }
 
   .hero__title {
@@ -164,6 +165,22 @@ iframe {
     display: none;
   }
 
+  .page-connect .schedule-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .page-connect .schedule-date {
+    min-width: 64px;
+  }
+
+  .page-connect .schedule-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .page-home .interview-card,
   .page-interviews .interview-card {
     flex: 0 0 min(84vw, 360px);
@@ -199,8 +216,9 @@ iframe {
   }
 
   .hero,
-  .hero--cinematic {
-    min-height: 62vh;
+  .hero--cinematic,
+  .page-hero {
+    min-height: 56vh;
     padding-top: calc(var(--nav-height) + var(--space-lg));
   }
 
@@ -255,6 +273,10 @@ iframe {
     margin-top: 6px;
     color: var(--text-muted);
     font-weight: 600;
+  }
+
+  .page-faq .faq-category__title {
+    font-size: 1.2rem;
   }
 }
 
